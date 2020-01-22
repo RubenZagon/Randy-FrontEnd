@@ -6,12 +6,12 @@ import { Achievements } from "../../components/achievements/achievements";
 export const Tasklist: FC = () => {
   return (
     <Container>
-      <h1>
+      {/* <h1>
         Hola, soy la lista de que haceres{" "}
         <span role="img" aria-label="emoji">
           📌
         </span>{" "}
-      </h1>
+      </h1> */}
       <ContainerBody>
         <TodoList initialTasks={[]} url="http://randy.tools/api/tasksList" />
         <Achievements />

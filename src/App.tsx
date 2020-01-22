@@ -29,15 +29,11 @@ const Container = styled.div`
   }
 
 
-  grid-template-columns: 10% 85% 5%;
+  grid-template-columns: 10% 90%;
   grid-template-rows:15% 85%;
   grid-template-areas:
   "nav header"
   "nav content";
-
-  /* display: flex;
-  flex-direction: row;
-  justify-content: flex-start; */
 `;
 
 const ContainterHome = styled.div`

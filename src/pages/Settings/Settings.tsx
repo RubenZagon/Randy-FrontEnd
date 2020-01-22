@@ -4,12 +4,12 @@ import styled from "@emotion/styled";
 export const Settings: FC = () => {
   return (
     <Container>
-      <h1>
+      {/* <h1>
         Hola, soy los ajustes{" "}
         <span role="img" aria-label="emoji">
           🔧
         </span>{" "}
-      </h1>
+      </h1> */}
       <Footer>
         <a href="https://github.com/RubenZagon">
           {" "}
@@ -28,7 +28,7 @@ const Container = styled.div`
   height: 80vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 const Footer = styled.p`
