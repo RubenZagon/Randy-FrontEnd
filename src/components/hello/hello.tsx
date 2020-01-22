@@ -21,6 +21,7 @@ const avatarPrint = (
 );
 
 export const Hello: FC<HelloProps> = ({ name, srcAvatar }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
 
   const handleReadNotifys = () => dispatch({ type: RESET_NOTIFYS });
