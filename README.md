@@ -7,13 +7,6 @@
 
 *Proyecto enfocado a ser una herramienta intuitiva para el entorno familiar, o personas que comparten piso, para ayudar a organizar tareas que hacer en el hogar así como compartir facturas, apuntar eventos importantes en el calendario incorporado, y también tener la opción de tener una lista de la compra*
 
-
-## Equipo: :man_technologist::man_technologist:
-
-~~[@Carlos M.](https://github.com/AnnwynDev)~~
-
-[@RubénZagon](https://github.com/RubenZagon) :unicorn:
-
 ## Página principal 
 :construction_worker::construction:En construcción...:construction:
 
