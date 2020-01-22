@@ -9,10 +9,12 @@ env:
   - REMOTE_PATH=/var/www/randy.tools
   - REMOTE_USER=travis
   - REMOTE_HOST=ssh.randy.tools
-after_success:
-- bash scripts/deploy-ghpages.sh
+script:
+  - npm run build
+# after_success:
+# - bash scripts/deploy-ghpages.sh
 deploy:
-  local_dir: production
+  local_dir: build/
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
