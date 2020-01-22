@@ -1,11 +1,15 @@
 .container {
   background: #484848;
-  min-height: 100vh;
-
+  padding-right: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  min-width: 5vw;
+  max-width: 10vw;
 }
 
 .icon {
@@ -18,7 +22,6 @@
   fill: red;
 }
 
-.selected {
-}
+.selected {}
 
 /* fill: #7df779; */

@@ -8,9 +8,9 @@
 *Proyecto enfocado a ser una herramienta intuitiva para el entorno familiar, o personas que comparten piso, para ayudar a organizar tareas que hacer en el hogar así como compartir facturas, apuntar eventos importantes en el calendario incorporado, y también tener la opción de tener una lista de la compra*
 
 ## Página principal 
-:construction_worker::construction:En construcción...Actualmente al no tener establecida una conexión con Backen hay opciones que no se van a mostrar:construction:
+:construction_worker::construction:En construcción...Actualmente al quitar la conexión con Backend hay opciones que no se van a mostrar:construction:
 
-[Randy GH-PAGES](https://rubenzagon.github.io/Randy-FrontEnd/)
+[Randy](https://randytools.netlify.com/)
 
 ## Diseño :hear_no_evil:
 

@@ -15,9 +15,29 @@ import { ButtonSummit } from "./components/buttonSumit/buttonSumit";
 
 const Container = styled.div`
   background: white;
-  display: flex;
+  display:grid;
+
+  .containerNavigator{
+    grid-area: nav;
+  }
+
+  .header{
+    grid-area: header;
+  }
+  .content{
+    grid-area: content;
+  }
+
+
+  grid-template-columns: 10% 85% 5%;
+  grid-template-rows:15% 85%;
+  grid-template-areas:
+  "nav header"
+  "nav content";
+
+  /* display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: flex-start; */
 `;
 
 const ContainterHome = styled.div`
@@ -31,7 +51,7 @@ const ContainterHome = styled.div`
 
 const App: React.FC = () => {
   //VOLVER VALOR A FALSE PARA TENER MODO LOGIN
-  const [isUserLogged, setIsUserLogged] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useState(true);
 
   const handleLogin = () => {
     setIsUserLogged(true);
@@ -51,7 +71,7 @@ const App: React.FC = () => {
             <Navigator />
           </div>
           <div className="page">
-            <HeaderTop />
+            <HeaderTop className="header" />
             <div className="content">
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/calendar" component={Calendar} />

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { KeepCalmAnd } from "../../components/keepCalm/keepCalm";
 
 export const Dashboard: FC = () => {
   return (
@@ -9,6 +10,9 @@ export const Dashboard: FC = () => {
           ✨
         </span>{" "}
       </h1>
+
+      <KeepCalmAnd />
+
     </div>
   );
 };
