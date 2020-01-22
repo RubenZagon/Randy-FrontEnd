@@ -2,7 +2,7 @@
   "name": "randy_fron-end",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://randy.tools/",
+  "homepage": "https://rubenzagon.github.io/Randy-FrontEnd/",
   "dependencies": {
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
