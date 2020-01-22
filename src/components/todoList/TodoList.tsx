@@ -16,8 +16,8 @@ interface TodoListProps {
 }
 
 export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
-  const [state, dispatch] = useContext(NotifyContext);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
 
   const [taskList, setTaskList] = useState();

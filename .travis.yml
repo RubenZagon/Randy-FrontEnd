@@ -4,12 +4,30 @@ nodejs:
 branches:
   only:
   - master
-env:
-  global:
-  - REMOTE_PATH=/var/www/randy.tools
-  - REMOTE_USER=travis
-  - REMOTE_HOST=ssh.randy.tools
-before_install:
-- bash scripts/install.sh
-after_success:
-- bash scripts/deploy.sh
+script:
+  - npm run build
+deploy:
+  local_dir: build/
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: master
+
+####### Para desplegar en Digital Ocean
+# language: node_js
+# nodejs:
+# - stable
+# branches:
+#   only:
+#   - master
+# env:
+#   global:
+#   - REMOTE_PATH=/var/www/randy.tools
+#   - REMOTE_USER=travis
+#   - REMOTE_HOST=ssh.randy.tools
+# before_install:
+# - bash scripts/install.sh
+# after_success:
+# - bash scripts/deploy.sh
