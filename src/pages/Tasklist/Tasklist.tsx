@@ -6,28 +6,22 @@ import { Achievements } from "../../components/achievements/achievements";
 export const Tasklist: FC = () => {
   return (
     <Container>
-      {/* <h1>
-        Hola, soy la lista de que haceres{" "}
-        <span role="img" aria-label="emoji">
-          📌
-        </span>{" "}
-      </h1> */}
-      <ContainerBody>
-        <TodoList initialTasks={[]} url="http://randy.tools/api/tasksList" />
-        <Achievements />
-      </ContainerBody>
+
+      <TodoList initialTasks={[]} url="http://randy.tools/api/tasksList" />
+      <span></span>
+      <Achievements />
+
     </Container>
   );
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 90%;
+width: 80vw;
+height: 80vh;
+
+display:grid;
+grid-template-columns: 1fr 10% 1fr ;
+
+
 `;
 
-const ContainerBody = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content:space-around;
-`

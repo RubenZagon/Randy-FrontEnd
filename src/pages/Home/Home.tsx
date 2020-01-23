@@ -14,7 +14,7 @@ transform: translate(60px, -10px) scale(1.3);
 
 const Container = styled.div`
 display:flex;
-flex-directions:row;
+flex-direction:row;
 transform:translateX(-60px);
 `
 

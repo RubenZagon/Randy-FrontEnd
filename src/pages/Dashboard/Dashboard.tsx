@@ -1,18 +1,18 @@
 import React, { FC } from "react";
+import styled from '../../styled';
 import { KeepCalmAnd } from "../../components/keepCalm/keepCalm";
 
 export const Dashboard: FC = () => {
   return (
-    <div>
-      {/* <h1>
-        Hola, soy el Dashboard{" "}
-        <span role="img" aria-label="Sparkles">
-          ✨
-        </span>{" "}
-      </h1> */}
-
+    <Container>
       <KeepCalmAnd />
-
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+height:80vh;
+display:flex;
+justify-content:center;
+align-items:center;
+`
