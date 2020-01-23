@@ -80,3 +80,6 @@ const Image = styled.img`
   height: 80px;
   margin-left: -20px;
 `;
+
+
+

@@ -3,7 +3,9 @@ import styled from "@emotion/styled";
 import { achievementList } from "./achievementList";
 import { AchievmentItem } from "./achievementItem";
 
-interface AchievementsProps {}
+interface AchievementsProps {
+  className?: string;
+}
 
 export const Achievements: FC<AchievementsProps> = props => {
   return (

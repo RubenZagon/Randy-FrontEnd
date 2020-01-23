@@ -47,7 +47,10 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
 
   return (
     <Container>
-      <Button onClick={addNewTask}>+ Agregar nueva tarea</Button>
+      <HeaderTasks>
+        <InputTask type='text' name='inputTask' placeholder="Ejemplo: Tender la ropa" />
+        <Button onClick={addNewTask}>+ Agregar</Button>
+      </HeaderTasks>
       {taskList && taskList.map(task => <TaskItem key={task.uuid} task={task} onCheckInput={handleOnCheckInput} />)}
     </Container>
   );
@@ -59,12 +62,21 @@ const Container = styled.div`
   justify-content: flex-start;
 `;
 
+const HeaderTasks = styled.div`
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+width: 100%;
+margin: 20px 0px;
+`
+
 const Button = styled.button`
   padding: 10px 20px;
-  margin-bottom: 20px;
   font-size: 1em;
   height: 40px;
-  margin-right: 50px;
+  min-width: 115px;
+  margin-right: 3%;
   background: #47ab43;
   color: white;
   border-radius: 10px;
@@ -75,3 +87,16 @@ const Button = styled.button`
     opacity: 0.8;
   }
 `;
+
+const InputTask = styled.input`
+padding: 10px 5px 5px 0px;
+margin-right: 5%;
+width: 70%;
+font-size: 1em;
+border: 0px;
+border-bottom: 3px lightgray solid;
+
+&:focus{
+  border-bottom: 3px green solid;
+}
+`
