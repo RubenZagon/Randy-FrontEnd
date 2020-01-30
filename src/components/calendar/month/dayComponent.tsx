@@ -26,6 +26,11 @@ p{
   height:1.5rem;
 }
 
+&:hover{
+  color:green;
+  background: lightgreen;
+}
+
 &.active{
   p{
     background: green;

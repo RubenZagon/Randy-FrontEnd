@@ -6,35 +6,79 @@ import moment from "moment";
 
 type MonthHandle = { PREV: string; NEXT: string }
 
-
-
-
 export const CalendarMonth = () => {
   let actualMonth: number = moment().month();
   let daysInMonth = moment().daysInMonth();
   const weekStart = moment(moment().year() + moment().month() + '-01').day();
   const [month, setMonth] = useState(DATE.month[actualMonth])
+  const [fecha, setFecha] = useState(
+    {
+      day: moment().date(),
+      month: moment().month(),
+      year: moment().year()
+    })
 
   function handleMonth(button: keyof MonthHandle) {
-    if (button === 'NEXT') {
+    let current = {
+      month: fecha.month,
+      year: fecha.year
     }
-    setMonth(DATE.month[actualMonth])
+
+    let updateDate = () => setFecha({ ...fecha, month: current.month, year: current.year });
+
+    if (button === 'NEXT') {
+      if (current.month === 11) {
+        current.month = 0;
+        current.year++;
+        updateDate()
+      } else {
+        current.month++;
+        updateDate()
+      }
+    }
+
+    if (button === 'PREV') {
+      if (current.month === 0) {
+        current.month = 11;
+        current.year--;
+        updateDate()
+      }
+      current.month--;
+      updateDate()
+    }
+
+
+    console.log(fecha);
+
+  }
+
+  function goToday() {
+    setFecha({
+      day: moment().date(),
+      month: moment().month(),
+      year: moment().year()
+    })
   }
 
 
   return (
     <Container>
+      {/* <button onClick={goToday}>TODAY</button> */}
       <Header>
         <button onClick={() => handleMonth('PREV')}>{'<'}</button>
-        <h1>{month}</h1>
+        <div>
+          <h1>{DATE.month[fecha.month]}</h1>
+          <h3>{fecha.year}</h3>
+        </div>
         <button onClick={() => handleMonth('NEXT')}>{'>'}</button>
       </Header>
 
       {Object.values(DATE.dayWeek).map((nameDay: any) => <p key={Math.random()}>{nameDay}</p>)}
       {generatorTags(0, weekStart - 1).map(el => <span key={el}></span>)}
       {generatorTags(1, daysInMonth).map(day => {
-
-        return moment().day() === day ? <DayComponent key={day} number={day} today={'active'} /> : <DayComponent key={day} number={day} />
+        return moment().date() === day
+          ? <DayComponent key={day} number={day} today={'active'} />
+          : <DayComponent key={day} number={day} />
       })}
     </Container>
   );
@@ -59,16 +103,28 @@ background: red;
 grid-column: 1/8;
 display:flex;
 flex-direction:row;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
 
-  h1{
-    margin: 0px 20px
+  div{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    h1{
+      margin: 0px 20px
+    }
+
+    h3{
+      margin:0px;
+      padding:0px;
+    }
   }
 
-  button{
-    height:50%;
-  }
+    button{
+      height:50%;
+    }
 
 
 `
