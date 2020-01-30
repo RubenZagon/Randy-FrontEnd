@@ -32,7 +32,10 @@ export const CalendarMonth = () => {
 
       {Object.values(DATE.dayWeek).map((nameDay: any) => <p key={Math.random()}>{nameDay}</p>)}
       {generatorTags(0, weekStart - 1).map(el => <span key={el}></span>)}
-      {generatorTags(1, daysInMonth).map(day => <DayComponent key={day} number={day} />)}
+      {generatorTags(1, daysInMonth).map(day => {
+
+        return moment().day() === day ? <DayComponent key={day} number={day} today={'active'} /> : <DayComponent key={day} number={day} />
+      })}
     </Container>
   );
 };
