@@ -13,6 +13,7 @@ type MonthHandle = { PREV: string; NEXT: string }
 export const CalendarMonth = () => {
   let actualMonth: number = dayjs().month();
   let daysInMonth = dayjs().daysInMonth();
+  const weekStart = dayjs(dayjs().year() + dayjs().month() + '-01').day();
   const [month, setMonth] = useState(DATE.month[actualMonth])
 
   function handleMonth(button: keyof MonthHandle) {
@@ -32,8 +33,8 @@ export const CalendarMonth = () => {
       </Header>
 
       {DATE.day.map(el => <p key={el}>{el}</p>)}
-      {getWeekDayStartInMonth().map(el => <span key={el}></span>)}
-      {printDays(daysInMonth).map(day => <DayComponent key={day} number={day} />)}
+      {generatorTags(0, weekStart).map(el => <span key={el}></span>)}
+      {generatorTags(1, daysInMonth).map(day => <DayComponent key={day} number={day} />)}
     </Container>
   );
 };
@@ -65,23 +66,11 @@ align-items:center;
   }
 `
 
-function printDays(dayOfMonth: number) {
-  let days: number[] = [];
+function generatorTags(indexStart: number, length: number) {
+  let counter: number[] = [];
 
-  for (let i = 1; i < dayOfMonth; i++) {
-    days.push(i)
-  }
-
-  return days
-}
-
-
-function getWeekDayStartInMonth() {
-  let counter: string[] = [];
-  const weekStart: number = dayjs(dayjs().year() + dayjs().month() + '-01').day();
-
-  for (let i = 0; i < weekStart; i++) {
-    counter.push(i.toString() + 'spam');
+  for (let i = indexStart; i < length; i++) {
+    counter.push(i);
   }
 
   return counter
