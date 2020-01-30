@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import dayjs from 'dayjs';
 import styled from "../../../styled";
 import DATE from "./controllerCalendar";
 import { DayComponent } from "./dayComponent";
+import moment from "moment";
 
 type MonthHandle = { PREV: string; NEXT: string }
 
@@ -11,14 +10,13 @@ type MonthHandle = { PREV: string; NEXT: string }
 
 
 export const CalendarMonth = () => {
-  let actualMonth: number = dayjs().month();
-  let daysInMonth = dayjs().daysInMonth();
-  const weekStart = dayjs(dayjs().year() + dayjs().month() + '-01').day();
+  let actualMonth: number = moment().month();
+  let daysInMonth = moment().daysInMonth();
+  const weekStart = moment(moment().year() + moment().month() + '-01').day();
   const [month, setMonth] = useState(DATE.month[actualMonth])
 
   function handleMonth(button: keyof MonthHandle) {
     if (button === 'NEXT') {
-      console.log(dayjs('2020-01-01').day());
     }
     setMonth(DATE.month[actualMonth])
   }
@@ -32,8 +30,8 @@ export const CalendarMonth = () => {
         <button onClick={() => handleMonth('NEXT')}>{'>'}</button>
       </Header>
 
-      {DATE.day.map(el => <p key={el}>{el}</p>)}
-      {generatorTags(0, weekStart).map(el => <span key={el}></span>)}
+      {Object.values(DATE.dayWeek).map((nameDay: any) => <p key={Math.random()}>{nameDay}</p>)}
+      {generatorTags(0, weekStart - 1).map(el => <span key={el}></span>)}
       {generatorTags(1, daysInMonth).map(day => <DayComponent key={day} number={day} />)}
     </Container>
   );
@@ -41,13 +39,17 @@ export const CalendarMonth = () => {
 
 const Container = styled.div`
 background: lightcoral;
-width: 80vw;
-height:70vh;
+width: 60vw;
+height:80vh;
 
 display:grid;
 grid-template-rows: 2fr 1fr 2fr 2fr 2fr 2fr 2fr;
 grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
+p {
+    align-self:center;
+    justify-self:center;
+  }
 `
 const Header = styled.div`
 background: red;
@@ -64,6 +66,8 @@ align-items:center;
   button{
     height:50%;
   }
+
+
 `
 
 function generatorTags(indexStart: number, length: number) {

@@ -45,12 +45,20 @@
 // }
 
 interface dateTS {
-  day: string[],
+  dayWeek: {},
   month: string[]
 }
 
 const DATE: dateTS = {
-  day: 'Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado'.split('_'),
+  dayWeek: {
+    1: 'Lunes',
+    2: 'Martes',
+    3: 'Miércoles',
+    4: 'Jueves',
+    5: 'Viernes',
+    6: 'Sábado',
+    7: 'Domingo',
+  },
   month: 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre'.split('_')
 
 }
