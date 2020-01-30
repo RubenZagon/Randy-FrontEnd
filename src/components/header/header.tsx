@@ -45,6 +45,7 @@ interface FakeUser {
 
 export const HeaderTop: FC<HeaderProps> = () => {
   const [text, setText] = useState<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState<FakeUser>(
     {
       results: [
@@ -69,6 +70,7 @@ export const HeaderTop: FC<HeaderProps> = () => {
 
   useEffect(() => {
     //data => data.results[0].name.first
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let fakeUser = handleUser().then(data => data.results[0]);
 
     // setUser({ ...fakeUser })
