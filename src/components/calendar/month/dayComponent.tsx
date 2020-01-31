@@ -15,16 +15,15 @@ export const DayComponent: FC<DayComponentProps> = ({ number, today }) => {
 };
 
 const Container = styled.div`
-background: white;
-border: 1px solid gray;
-font-weight:bold;
+/* background: lightgrey; */
+font-family: "Montserrat",sans-serif;
+border-radius:50%;
+width:50px;;
+height:50px;;
 
-p{
-  padding:5px;
-  margin:0px;
-  width:1.5rem;
-  height:1.5rem;
-}
+display:flex;
+justify-content:center;
+align-content:center;
 
 &:hover{
   color:green;
@@ -32,9 +31,8 @@ p{
 }
 
 &.active{
-  p{
     background: green;
     color:white;
-  }
+    font-weight:bold;
 }
 `
