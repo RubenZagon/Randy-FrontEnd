@@ -7,25 +7,28 @@ import moment from "moment";
 type MonthHandle = { PREV: string; NEXT: string }
 
 export const CalendarMonth = () => {
-  let actualMonth: number = moment().month();
-  let daysInMonth = moment().daysInMonth();
-  const weekStart = moment(moment().year() + moment().month() + '-01').day();
-  const [month, setMonth] = useState(DATE.month[actualMonth])
-  const [fecha, setFecha] = useState(
+
+  const [date, setDate] = useState(
     {
       day: moment().date(),
       month: moment().month(),
       year: moment().year()
     })
 
+  let currentDateString: string = [date.year.toString(), (date.month + 1).toString()].join('-')
+  const weekStart = moment(currentDateString + '-01').day() - 2;
+
   function handleMonth(button: keyof MonthHandle) {
+
+    console.log(`${DATE.month[date.month]}   -  ${moment(currentDateString, "YYYY-MM").daysInMonth()}`);
+    console.log(weekStart - 2);
+
     let current = {
-      month: fecha.month,
-      year: fecha.year
+      month: date.month,
+      year: date.year
     }
 
-    let updateDate = () => setFecha({ ...fecha, month: current.month, year: current.year });
-
+    let updateDate = () => setDate({ ...date, month: current.month, year: current.year });
     if (button === 'NEXT') {
       if (current.month === 11) {
         current.month = 0;
@@ -42,18 +45,16 @@ export const CalendarMonth = () => {
         current.month = 11;
         current.year--;
         updateDate()
+      } else {
+        current.month--;
+        updateDate()
       }
-      current.month--;
-      updateDate()
     }
-
-
-    console.log(fecha);
-
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function goToday() {
-    setFecha({
+    setDate({
       day: moment().date(),
       month: moment().month(),
       year: moment().year()
@@ -67,19 +68,27 @@ export const CalendarMonth = () => {
       <Header>
         <button onClick={() => handleMonth('PREV')}>{'<'}</button>
         <div>
-          <h1>{DATE.month[fecha.month]}</h1>
-          <h3>{fecha.year}</h3>
+          <h1>{DATE.month[date.month]}</h1>
+          <h3>{date.year}</h3>
         </div>
         <button onClick={() => handleMonth('NEXT')}>{'>'}</button>
       </Header>
 
       {Object.values(DATE.dayWeek).map((nameDay: any) => <p key={Math.random()}>{nameDay}</p>)}
-      {generatorTags(0, weekStart - 1).map(el => <span key={el}></span>)}
-      {generatorTags(1, daysInMonth).map(day => {
-        return moment().date() === day
+
+      {generatorTags(0, weekStart).map(el => <span key={el}></span>)}
+
+      {generatorTags(1, moment(currentDateString, "YYYY-MM").daysInMonth()).map(day => {
+        const isCurrentDate =
+          moment().date() === day &&
+          moment().month() === date.month &&
+          moment().year() === date.year;
+
+        return (isCurrentDate)
           ? <DayComponent key={day} number={day} today={'active'} />
           : <DayComponent key={day} number={day} />
       })}
+
     </Container>
   );
 };
@@ -132,7 +141,7 @@ align-items:center;
 function generatorTags(indexStart: number, length: number) {
   let counter: number[] = [];
 
-  for (let i = indexStart; i < length; i++) {
+  for (let i = indexStart; i <= length; i++) {
     counter.push(i);
   }
 
