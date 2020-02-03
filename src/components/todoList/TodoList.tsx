@@ -73,7 +73,6 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
   };
 
 
-
   return (
     <Container>
       <HeaderTasks>
@@ -106,7 +105,8 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
                 <span></span>
                 <p>{task.label}</p>
               </label>
-            </ContainerTask>         </Anime>
+            </ContainerTask>
+          </Anime>
         })}
       </TransitionGroup>
     </Container>

@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import styled from "@emotion/styled";
 import { TodoList } from "../../components/todoList/TodoList";
 import { Achievements } from "../../components/achievements/achievements";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import handleUnlockAchievement from "../../components/achievements/handleUnlockAchievement";
 
 export const Tasklist: FC = () => {
   return (
@@ -10,6 +12,7 @@ export const Tasklist: FC = () => {
       <TodoList initialTasks={[]} url="http://randy.tools/api/tasksList" />
       <span></span>
       <Achievements />
+      {/* <button onClick={() => handleUnlockAchievement('Atareada', 0, 3)}>Prueba</button> */}
 
     </Container>
   );
