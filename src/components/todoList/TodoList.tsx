@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useContext, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import Anime from '@mollycule/react-anime';
@@ -27,6 +28,7 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
+  const [inputTask, setInputTask] = useState('')
 
   const [taskList, setTaskList] = useState<Task[]>(initialTasksDefault);
 
@@ -56,17 +58,26 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
       setTaskList(newTasks);
     }, [taskList]);
 
+  const handleInput = (event) => {
+    setInputTask(event.target.value)
+    event.target.value = "";
+  }
+
   const addNewTask = () => {
     const newTasks = [...taskList];
-    newTasks.push({ uuid: "" + Math.random(), label: `Todo-${Math.random()}`, done: false });
+    inputTask !== '' ?
+      newTasks.push({ uuid: "" + Math.random(), label: inputTask, done: false })
+      : console.warn('Debe introducir un texto válido en el campo de nueva tarea');
     setTaskList(newTasks);
     dispatch({ type: NEW_NOTIFY });
   };
 
+
+
   return (
     <Container>
       <HeaderTasks>
-        <InputTask type='text' name='inputTask' placeholder="Ejemplo: Tender la ropa" />
+        <InputTask type='text' onBlur={event => handleInput(event)} name='inputTask' placeholder="Ejemplo: Tender la ropa" />
         <Button onClick={addNewTask}>+ Agregar</Button>
       </HeaderTasks>
 
@@ -76,7 +87,7 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
             appear
             key={task.uuid}
             onEntering={{
-              translateX: [-200, 0],
+              translateY: [-100, 0],
               opacity: [0, 1],
               duration: 200,
               delay: i * 40
@@ -90,7 +101,7 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
             duration={300}
           >
             <ContainerTask onClick={handleDelete(i)}>
-              <input type="checkbox" checked={task.done} value={task.uuid} />
+              <input type="checkbox" onChange={handleDelete(i)} checked={task.done} value={task.uuid} />
               <label htmlFor="clearTask">
                 <span></span>
                 <p>{task.label}</p>
