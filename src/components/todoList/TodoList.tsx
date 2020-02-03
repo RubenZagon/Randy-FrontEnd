@@ -1,8 +1,13 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import styled from "@emotion/styled";
+import Anime from '@mollycule/react-anime';
+import animejs from 'animejs';
 import { TaskItem } from "./TaskItem";
 import { NEW_NOTIFY, NotifyContext } from "../circleOfNotifys/notifyProvider";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Tasks } from "../../services/tasks/services";
+import initialTasksDefault from './tasklistDefault';
+
 
 export interface Task {
   uuid: string;
@@ -15,33 +20,35 @@ interface TodoListProps {
   url: string;
 }
 
+
+
 export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
 
-  const [taskList, setTaskList] = useState();
+  const [taskList, setTaskList] = useState<Task[]>(initialTasksDefault);
 
-  useEffect(() => {
-    Tasks.getAll()
-      .then(tasks => setTaskList(tasks))
-      .catch(err => console.log("HE PETAO", err));
-  }, [url]);
+  // useEffect(() => {
+  //   Tasks.getAll()
+  //     .then(tasks => setTaskList(tasks))
+  //     .catch(err => console.log("HE PETAO", err));
+  // }, [url]);
 
   const handleOnCheckInput = (taskToUpdate: Task) => {
-    const newTasks = tasks.map(task => {
+    const newTasks = taskList.map(task => {
       if (task.uuid === taskToUpdate.uuid) {
         return { ...task, done: !task.done };
       }
       return task;
     });
-    setTasks(newTasks);
+    setTaskList(newTasks);
   };
 
   const addNewTask = () => {
-    // const newTasks = [...tasks];
-    // newTasks.push({ uuid: "" + Math.random(), label: `Todo-${Math.random()}`, done: false });
-    // setTasks(newTasks);
+    const newTasks = [...taskList];
+    newTasks.push({ uuid: "" + Math.random(), label: `Todo-${Math.random()}`, done: false });
+    setTaskList(newTasks);
     dispatch({ type: NEW_NOTIFY });
   };
 
@@ -51,7 +58,20 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
         <InputTask type='text' name='inputTask' placeholder="Ejemplo: Tender la ropa" />
         <Button onClick={addNewTask}>+ Agregar</Button>
       </HeaderTasks>
-      {taskList && taskList.map(task => <TaskItem key={task.uuid} task={task} onCheckInput={handleOnCheckInput} />)}
+
+      {taskList && taskList.map(task => {
+        return <Anime in
+          duration={300}
+          appear
+          onEntering={{
+            translateY: [100, 0],
+            opacity: [0, 1],
+            delay: animejs.stagger(60),
+            easing: "linear"
+          }}>
+          <TaskItem key={task.uuid} task={task} onCheckInput={handleOnCheckInput} />
+        </Anime>
+      })}
     </Container>
   );
 };

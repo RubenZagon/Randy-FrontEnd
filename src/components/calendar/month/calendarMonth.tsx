@@ -4,6 +4,8 @@ import DATE from "./controllerCalendar";
 import { DayComponent } from "./dayComponent";
 import moment from "moment";
 
+/// inspiration -> https://i.pinimg.com/originals/c6/6e/36/c66e36bf53690677a669bc78dac579c7.jpg
+
 type MonthHandle = { PREV: string; NEXT: string }
 
 export const CalendarMonth = () => {
