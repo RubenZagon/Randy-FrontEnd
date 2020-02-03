@@ -7,7 +7,7 @@ const initialState = {
   count: 20
 }
 
-const <%= name %>Reducer = (state = initialState, action) => {
+const <%= name %>Reducer = (state = initialState, action: { type: string }) => {
   switch (action.type) {
     case PRUEBA_TYPE: return {
       ...state,
