@@ -1,12 +1,13 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import Anime from '@mollycule/react-anime';
-import animejs from 'animejs';
+import anime from 'animejs';
 import { TaskItem } from "./TaskItem";
 import { NEW_NOTIFY, NotifyContext } from "../circleOfNotifys/notifyProvider";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Tasks } from "../../services/tasks/services";
 import initialTasksDefault from './tasklistDefault';
+import { Transition, TransitionGroup } from "react-transition-group";
 
 
 export interface Task {
@@ -35,15 +36,25 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
   //     .catch(err => console.log("HE PETAO", err));
   // }, [url]);
 
-  const handleOnCheckInput = (taskToUpdate: Task) => {
-    const newTasks = taskList.map(task => {
-      if (task.uuid === taskToUpdate.uuid) {
-        return { ...task, done: !task.done };
-      }
-      return task;
-    });
-    setTaskList(newTasks);
-  };
+  // const handleDelete = useCallback(
+  //   () => (taskToUpdate: Task) => {
+  //     const newTasks = taskList.map(task => {
+  //       if (task.uuid === taskToUpdate.uuid) {
+  //         console.log('Tarea completada - ', task.label);
+  //         return { ...task, done: !task.done };
+  //       }
+  //       return task;
+  //     })
+
+  //     setTaskList(newTasks);
+  // }, [taskList]);
+
+  const handleDelete = useCallback(
+    (index: number) => () => {
+      const newTasks = [...taskList];
+      newTasks.splice(index, 1);
+      setTaskList(newTasks);
+    }, [taskList]);
 
   const addNewTask = () => {
     const newTasks = [...taskList];
@@ -59,19 +70,34 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
         <Button onClick={addNewTask}>+ Agregar</Button>
       </HeaderTasks>
 
-      {taskList && taskList.map(task => {
-        return <Anime in
-          duration={300}
-          appear
-          onEntering={{
-            translateY: [100, 0],
-            opacity: [0, 1],
-            delay: animejs.stagger(60),
-            easing: "linear"
-          }}>
-          <TaskItem key={task.uuid} task={task} onCheckInput={handleOnCheckInput} />
-        </Anime>
-      })}
+      <TransitionGroup>
+        {taskList && taskList.map((task, i) => {
+          return <Anime
+            appear
+            key={task.uuid}
+            onEntering={{
+              translateX: [-200, 0],
+              opacity: [0, 1],
+              duration: 200,
+              delay: i * 40
+            }}
+            onExiting={{
+              translateX: "100%",
+              opacity: 0,
+              easing: "easeInOutQuad",
+              duration: 300
+            }}
+            duration={300}
+          >
+            <ContainerTask onClick={handleDelete(i)}>
+              <input type="checkbox" checked={task.done} value={task.uuid} />
+              <label htmlFor="clearTask">
+                <span></span>
+                <p>{task.label}</p>
+              </label>
+            </ContainerTask>         </Anime>
+        })}
+      </TransitionGroup>
     </Container>
   );
 };
@@ -120,3 +146,51 @@ border-bottom: 3px lightgray solid;
   border-bottom: 3px green solid;
 }
 `
+
+const ContainerTask = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: white;
+  border-radius: 5px;
+  margin: 3px 0px;
+  padding: 7px 15px;
+  cursor: pointer;
+
+  p {
+    margin:0px;
+    padding:0px;
+  }
+
+  label{
+    display:flex;
+    align-content:center;
+  }
+
+  &:hover {
+    /* box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.3); */
+    /* transform: translateY(-5px); */
+    background: lightgreen;
+  }
+
+  & input[type="checkbox"] {
+    display: none;
+  }
+
+  & input[type="checkbox"] + label span {
+    background: #EAEAEA;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  & input[type="checkbox"]:checked + label span{
+    background: #47AB43;
+    background-size: cover;
+  }
+
+`;
