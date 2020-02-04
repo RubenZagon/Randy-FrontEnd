@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fbd3a82bd2bfdf30a99cb8e272ba9e67",
+    "revision": "418f136de07bfa152ff49fb35f67a0e6",
     "url": "/Randy-FrontEnd/index.html"
   },
   {
-    "revision": "eff081af7f882995245d",
+    "revision": "5919797e90f38dbfd280",
     "url": "/Randy-FrontEnd/static/css/main.97ea12de.chunk.css"
   },
   {
-    "revision": "07df96ab0546554a40bd",
-    "url": "/Randy-FrontEnd/static/js/2.856cd620.chunk.js"
+    "revision": "21e9d5a2e436399cbb43",
+    "url": "/Randy-FrontEnd/static/js/2.1385d549.chunk.js"
   },
   {
     "revision": "e928fe768baa9832b5bc57eae021f30c",
-    "url": "/Randy-FrontEnd/static/js/2.856cd620.chunk.js.LICENSE"
+    "url": "/Randy-FrontEnd/static/js/2.1385d549.chunk.js.LICENSE"
   },
   {
-    "revision": "eff081af7f882995245d",
-    "url": "/Randy-FrontEnd/static/js/main.a475c61d.chunk.js"
+    "revision": "5919797e90f38dbfd280",
+    "url": "/Randy-FrontEnd/static/js/main.1fee6c23.chunk.js"
   },
   {
     "revision": "b14a8dc4d9fcef675fa6",
