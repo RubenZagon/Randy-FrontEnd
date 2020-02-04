@@ -1,1 +1,1 @@
-export const BUY_ICECREAM = 'BUY_ICECREAM'
+export const TASK_COMPLETE = 'TASK_COMPLETE'

@@ -1,7 +1,8 @@
-import { BUY_ICECREAM } from './taskListTypes'
+import { TASK_COMPLETE } from './taskListTypes'
 
-export const buyIceCream = () => {
+export const completeTask = (indexTask: number) => {
   return {
-    type: BUY_ICECREAM
+    type: TASK_COMPLETE,
+    id: indexTask
   }
 }
