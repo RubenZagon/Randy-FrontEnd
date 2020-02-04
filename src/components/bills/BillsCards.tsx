@@ -10,8 +10,7 @@ interface BillsCardsProps {
 }
 
 export const BillsCards: FC<BillsCardsProps> = ({ billData }) => {
-  console.log(billData);
-
+  // return <>{billCardList && billCardList.map(bill => <BillCard key={bill.title} card={bill} />)} </>;
   return <>{billCardList && billCardList.map(bill => <BillCard key={bill.title} card={bill} />)} </>;
 };
 
