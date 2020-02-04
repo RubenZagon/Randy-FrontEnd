@@ -14,7 +14,7 @@ export interface BillCardInterface {
 export const billCardList: BillCardInterface[] = [
   {
     title: "Alquiler",
-    cost: 600,
+    cost: 700,
     frecuency: "Mensual",
     color: "LightGreen",
     payer: ["ruben", "manz", "Raul"],

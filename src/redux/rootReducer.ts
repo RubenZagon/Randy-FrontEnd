@@ -1,14 +1,12 @@
 import { combineReducers } from 'redux'
 import tasksReducer from './taskList/taskListReducer'
-// import cakeReducer from './cake/cakeReducer'
-// import iceCreamReducer from './iceCream/iceCreamReducer'
-// import userReducer from './user/userReducer'
+import billReducer from './bill/billReducer'
+
 
 const rootReducer = combineReducers({
-  tasks: tasksReducer
-  // cake: cakeReducer,
-  // iceCream: iceCreamReducer,
-  // user: userReducer
+  tasks: tasksReducer,
+  bill: billReducer
+
 })
 
 export default rootReducer
