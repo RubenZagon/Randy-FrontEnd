@@ -5,15 +5,18 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { AppProvider } from "./contexts/AppProvider";
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import createNewStore from './store/store';
 
-const application = <Provider store={store}>
-  <AppProvider>
-    <App />
-  </AppProvider>;
-</Provider>
-
-ReactDOM.render(application, document.getElementById('root'));
+const store = createNewStore()
+console.log(store)
+ReactDOM.render(
+  <Provider store={store}>
+    <AppProvider>
+      <App />
+    </AppProvider>;
+  </Provider>
+  , document.getElementById('root')
+  );
 
 serviceWorker.unregister();
 

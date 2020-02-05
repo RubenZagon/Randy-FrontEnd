@@ -1,17 +1,4 @@
-type frecuency = "Mensual" | "Trimestral";
-type colorCard = "lightcoral" | "LemonChiffon" | "LightGreen" | "lightcyan";
-
-export interface BillCardInterface {
-  id: string,
-  title: string;
-  cost: number;
-  frecuency: frecuency;
-  color: colorCard;
-  payer: string[];
-  image: string;
-  paymentDivision: number;
-}
-
+import {BillCardInterface} from "../../components/bills/types"
 export const billCardList: BillCardInterface[] = [
   {
     id: 'cqz9tj4jk2iu0j1rmg3y',

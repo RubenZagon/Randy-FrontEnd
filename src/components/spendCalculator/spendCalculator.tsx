@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from '@emotion/styled';
 import { connect } from "react-redux";
-import { BillCardInterface } from "../bills/billCardsList";
+import { BillCardInterface } from "../bills/types";
 
 interface SpendCalculatorProps {
   billData?: BillCardInterface

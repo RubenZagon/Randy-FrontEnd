@@ -1,9 +1,17 @@
-import { GET_BILLS } from './billTypes'
+import { ADD_BILL, BillActions, GET_BILLS } from './billTypes'
+import {BillCardInterface} from "../../components/bills/types"
 
-
-export const FUNCTION_NAME = () => {
+export function addBill(bill: BillCardInterface): BillActions{
   return {
-    type: GET_BILLS
+    type: ADD_BILL,
+    payload: bill
+  }
+}
+
+export function getBill(id:string): BillActions {
+  return {
+    type: GET_BILLS,
+    id: id
   }
 }
 

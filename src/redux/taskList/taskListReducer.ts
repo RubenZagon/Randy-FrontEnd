@@ -1,23 +1,26 @@
-import { GET_TASKS } from './taskListTypes'
-import initialTasksDefault from '../../components/todoList/tasklistDefault'
 import { Reducer } from 'react'
-import { Action } from 'redux'
-import { TaskState } from '../rootReducer'
+import { TaskActions, TaskState, GET_TASKS, ADD_TASK } from './taskListTypes'
 
-export type TaskActionComplete = Action<typeof GET_TASKS>
+const initialState: TaskState = {
+  tasks : [
+  {
+    done:false,
+    label:"TEST",
+    uuid:"0"
+  }
+]}
 
-export interface TaskAction extends TaskActionComplete {
-  id: number
-}
-
-const tasksReducer: Reducer<TaskState, TaskAction> = (
-  state: TaskState = { tasks: initialTasksDefault },
-  action: TaskAction
+const tasksReducer: Reducer<TaskState, TaskActions> = (
+  state: TaskState = initialState,
+  action: TaskActions
 ): TaskState => {
   switch (action.type) {
     case GET_TASKS:
       return state
-
+    case ADD_TASK:
+      return {
+        tasks: [...state.tasks,action.payload]
+      }
     default:
       return state
   }

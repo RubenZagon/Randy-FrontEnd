@@ -1,8 +1,16 @@
-export const TASK_COMPLETE = 'TASK_COMPLETE'
+import { Task } from "../../services/tasks/models"
+import { TaskActions, ADD_TASK, GET_TASKS } from "./taskListTypes"
 
-export const completeTask = (indexTask: number) => {
+export function addTask(task: Task): TaskActions{
   return {
-    type: TASK_COMPLETE,
-    id: indexTask
+    type: ADD_TASK,
+    payload: task
+  }
+}
+
+export function getTask(id:number): TaskActions {
+  return {
+    type: GET_TASKS,
+    id: id
   }
 }
