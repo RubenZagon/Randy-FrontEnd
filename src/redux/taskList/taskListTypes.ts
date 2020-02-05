@@ -1,1 +1,1 @@
-export const TASK_COMPLETE = 'TASK_COMPLETE'
+export const GET_TASKS = 'GET_TASKS'

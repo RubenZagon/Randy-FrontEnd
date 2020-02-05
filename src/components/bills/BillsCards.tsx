@@ -11,12 +11,14 @@ interface BillsCardsProps {
 
 export const BillsCards: FC<BillsCardsProps> = ({ billData }) => {
   // return <>{billCardList && billCardList.map(bill => <BillCard key={bill.title} card={bill} />)} </>;
-  return <>{billCardList && billCardList.map(bill => <BillCard key={bill.title} card={bill} />)} </>;
+
+
+  return <>{billData && billData.map(bill => <BillCard key={bill.title} card={bill} />)} </>;
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: BillCardInterface) => {
   return {
-    billData: state.bill
+    billData: state
   }
 }
 

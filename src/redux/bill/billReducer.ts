@@ -1,15 +1,23 @@
-import { PRUEBA_TYPE } from './billTypes'
+import { GET_BILLS } from './billTypes'
 import { billCardList } from '../../components/bills/billCardsList'
+import { Reducer } from 'react'
+import { Action } from 'redux'
+import { BillState } from '../rootReducer'
 
+export type BillActionComplete = Action<typeof GET_BILLS>
 
-const billReducer = (state = billCardList, action: { type: string }) => {
+export interface BillAction extends BillActionComplete {
+}
+
+const billReducer: Reducer<BillState, BillAction> = (
+  state: BillState = { bills: billCardList },
+  action: BillAction
+): BillState => {
   switch (action.type) {
-    case PRUEBA_TYPE: return {
-      ...state,
-      // count: state.count - 1
-    }
-
-    default: return state
+    case GET_BILLS:
+      return state
+    default:
+      return state
   }
 }
 

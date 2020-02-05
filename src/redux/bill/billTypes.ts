@@ -1,2 +1,2 @@
 
-export const PRUEBA_TYPE = 'PRUEBA_TYPE';
+export const GET_BILLS = 'GET_BILLS';

@@ -1,4 +1,4 @@
-import { TASK_COMPLETE } from './taskListTypes'
+export const TASK_COMPLETE = 'TASK_COMPLETE'
 
 export const completeTask = (indexTask: number) => {
   return {

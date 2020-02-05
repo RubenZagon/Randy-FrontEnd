@@ -1,22 +1,25 @@
-import { TASK_COMPLETE } from './taskListTypes'
+import { GET_TASKS } from './taskListTypes'
 import initialTasksDefault from '../../components/todoList/tasklistDefault'
+import { Reducer } from 'react'
+import { Action } from 'redux'
+import { TaskState } from '../rootReducer'
 
+export type TaskActionComplete = Action<typeof GET_TASKS>
 
+export interface TaskAction extends TaskActionComplete {
+  id: number
+}
 
-// const initialState = {
-//   numOfIceCreams: 20
-// }
-
-const tasksReducer = (state = initialTasksDefault, action: { type: string, id: number }) => {
+const tasksReducer: Reducer<TaskState, TaskAction> = (
+  state: TaskState = { tasks: initialTasksDefault },
+  action: TaskAction
+): TaskState => {
   switch (action.type) {
-    case TASK_COMPLETE: return {
-      ...state,
-      done: state[action.id].done = true
+    case GET_TASKS:
+      return state
 
-      // numOfIceCreams: state.numOfIceCreams - 1
-    }
-
-    default: return state
+    default:
+      return state
   }
 }
 

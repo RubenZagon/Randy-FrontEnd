@@ -1,13 +1,27 @@
 import { combineReducers } from 'redux'
-import tasksReducer from './taskList/taskListReducer'
-import billReducer from './bill/billReducer'
+import tasksReducer, { TaskAction } from './taskList/taskListReducer'
+import billReducer, { BillAction } from './bill/billReducer'
+import { Task } from '../services/tasks/models'
+import { BillCardInterface } from '../components/bills/billCardsList'
+import { Reducer } from 'react'
+
+export interface TaskState {
+  tasks: Task[]
+}
+
+export interface BillState {
+  bills: BillCardInterface[]
+}
+
+export interface AppState {
+  taskList: TaskState,
+  billList: BillState
+}
 
 
-const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  bill: billReducer
+export type ReducerActions = TaskAction | BillAction;
 
-})
+const rootReducer: Reducer<AppState, BillAction> = { billList: billReducer }
 
 export default rootReducer
 

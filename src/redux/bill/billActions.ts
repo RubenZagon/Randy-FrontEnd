@@ -1,8 +1,9 @@
-import { PRUEBA_TYPE } from './billTypes'
+import { GET_BILLS } from './billTypes'
+
 
 export const FUNCTION_NAME = () => {
   return {
-    type: PRUEBA_TYPE
+    type: GET_BILLS
   }
 }
 

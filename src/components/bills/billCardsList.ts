@@ -2,6 +2,7 @@ type frecuency = "Mensual" | "Trimestral";
 type colorCard = "lightcoral" | "LemonChiffon" | "LightGreen" | "lightcyan";
 
 export interface BillCardInterface {
+  id: string,
   title: string;
   cost: number;
   frecuency: frecuency;
@@ -13,6 +14,7 @@ export interface BillCardInterface {
 
 export const billCardList: BillCardInterface[] = [
   {
+    id: 'cqz9tj4jk2iu0j1rmg3y',
     title: "Alquiler",
     cost: 700,
     frecuency: "Mensual",
@@ -22,6 +24,7 @@ export const billCardList: BillCardInterface[] = [
     paymentDivision: paymentDivisionCalculate(700)
   },
   {
+    id: '5xbn7q8m3qomgkwmwdm1zx',
     title: "Agua",
     cost: 60,
     frecuency: "Trimestral",
@@ -31,6 +34,7 @@ export const billCardList: BillCardInterface[] = [
     paymentDivision: paymentDivisionCalculate(60)
   },
   {
+    id: 'c5hiyccqk5gu4i2lw3mgin',
     title: "Pago por ser tu amigo",
     cost: 53,
     frecuency: "Mensual",
