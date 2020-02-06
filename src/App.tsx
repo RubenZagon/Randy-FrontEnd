@@ -20,7 +20,7 @@ const App: React.FC = () => {
   const [isUserLogged, setIsUserLogged] = useState(true);
 
   const handleLogin = () => {
-    setIsUserLogged(true);
+    setIsUserLogged(false);
   };
 
   return (

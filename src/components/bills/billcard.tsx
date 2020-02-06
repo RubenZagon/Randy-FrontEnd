@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from '@emotion/styled';
-import { BillCardInterface } from "./billCardsList";
+import { BillCardInterface } from "./types";
 
 interface BillCardProps {
   card: BillCardInterface

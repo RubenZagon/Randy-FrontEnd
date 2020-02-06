@@ -1,21 +1,33 @@
-import { GET_BILLS } from './billTypes'
-import { billCardList } from '../../components/bills/billCardsList'
+import { GET_BILLS, BillActions,BillState, ADD_BILL } from './billTypes'
 import { Reducer } from 'react'
-import { Action } from 'redux'
-import { BillState } from '../rootReducer'
 
-export type BillActionComplete = Action<typeof GET_BILLS>
+const initialState: BillState = {
+  bills: [
+  {
+    color:"LemonChiffon",
+    cost:0,
+    frecuency:"Mensual",
+    id:"0",
+    image:"",
+    payer:[""],
+    paymentDivision:0,
+    title:"Bill"
+  }
+]}
 
-export interface BillAction extends BillActionComplete {
-}
-
-const billReducer: Reducer<BillState, BillAction> = (
-  state: BillState = { bills: billCardList },
-  action: BillAction
+const billReducer: Reducer<BillState, BillActions> = (
+  state: BillState =  initialState ,
+  action: BillActions
 ): BillState => {
   switch (action.type) {
     case GET_BILLS:
-      return state
+      return {
+        ...state,
+      }
+    case ADD_BILL:
+      return {
+        bills: [...state.bills,action.payload]
+      }
     default:
       return state
   }
