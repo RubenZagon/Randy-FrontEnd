@@ -1,15 +1,12 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
 import BillCard from "../../components/bills";
-import { SpendCalculator } from "../../components/spendCalculator/spendCalculator";
+import SpendCalculator from "../../components/spendCalculator/spendCalculator";
 import { connect } from "react-redux";
 import { BillState } from "../../redux/bill/billTypes";
 
 
 const BillPage: FC<BillState> = ({ bills }: any) => {
-
-  // const totalSpend = Object.values(bills).reduce((acc: any, { paymentDivision }: any) => acc + paymentDivision, 0)
-  // console.log(totalSpend);
 
   return (
     <Container>
