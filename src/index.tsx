@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import createNewStore from './store/store';
 
 const store = createNewStore()
-console.log(store)
+
 ReactDOM.render(
   <Provider store={store}>
     <AppProvider>
@@ -16,7 +16,7 @@ ReactDOM.render(
     </AppProvider>;
   </Provider>
   , document.getElementById('root')
-  );
+);
 
 serviceWorker.unregister();
 

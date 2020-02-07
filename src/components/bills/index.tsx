@@ -8,7 +8,7 @@ import { BillState } from "../../redux/bill/billTypes";
 
 const mapStateToProps = (state: BillState) => {
   return {
-    billData: state.bills
+    billData: state.billsList
   }
 }
 

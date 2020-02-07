@@ -1,48 +1,35 @@
-import React, { FC } from "react";
+/* eslint-disable no-labels */
+import React, { FC, useEffect } from "react";
 import styled from '@emotion/styled';
-import { connect } from "react-redux";
-import { BillCardInterface } from "../bills/types";
 
 interface SpendCalculatorProps {
-  billData?: BillCardInterface
+  total?: number,
+  calculateTotalCost?: () => void
 }
 
-export const SpendCalculator: FC<SpendCalculatorProps> = ({ billData }) => {
+export const SpendCalculator: FC<SpendCalculatorProps> = ({ total, calculateTotalCost }) => {
 
-  const calcu = [{ ...billData }];
+  useEffect(() => {
+    calculateTotalCost!()
+  }, [calculateTotalCost])
 
   return (
     <Container>
-      <h1>Total de gastos <span role='img' aria-label='dinero volando'> 💸</span></h1>
-      {
-        calcu && calcu.map(() => {
-          console.log(billData);
-
-          return 'hola'
-        })
-      }
+      <h2><span role='img' aria-label='dinero volando'>💰</span> Total de gastos <span role='img' aria-label='dinero volando'>💰</span></h2>
+      <h1>{total}€</h1>
     </Container>
   );
 };
 
 const Container = styled.div`
-background: lightcoral;
+display:flex;
+flex-direction:column;
+align-items:center;
 
+h2,h1 {
+margin:5px;
+padding:0px;
+}
 `
 
-const mapStateToProps = (state: any) => {
-  return {
-    billData: state.bill
-  }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // fetchUsers: () => dispatch(fetchUsers())
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SpendCalculator)

@@ -1,11 +1,11 @@
-import { GET_BILLS, BillActions, BillState, ADD_BILL } from './billTypes'
+import { GET_BILLS, BillActions, BillState, ADD_BILL, CALCULATE_TOTAL_COST } from './billTypes'
 import { Reducer } from 'react'
 import { billCardList } from '../../services/bills/models'
 
 const initialState: BillState = {
-  bills: billCardList
+  billsList: billCardList,
+  totalSpend: 0
 }
-
 const billReducer: Reducer<BillState, BillActions> = (
   state: BillState = initialState,
   action: BillActions
@@ -13,12 +13,23 @@ const billReducer: Reducer<BillState, BillActions> = (
   switch (action.type) {
     case GET_BILLS:
       return {
-        ...state,
+        ...state
       }
+
     case ADD_BILL:
       return {
-        bills: [...state.bills, action.payload]
+        ...state
       }
+
+    case CALCULATE_TOTAL_COST:
+      const totalCostCalculated = Object
+        .values(state.billsList)
+        .reduce((acc: number, { paymentDivision }) => acc + paymentDivision, 0);
+      return {
+        ...state,
+        totalSpend: totalCostCalculated
+      }
+
     default:
       return state
   }

@@ -4,8 +4,8 @@ import { combineReducers } from 'redux';
 
 
 export const rootReducer = combineReducers({
-  billList: billReducer,
-  taskList: tasksReducer
+  billData: billReducer,
+  taskData: tasksReducer
 })
 
 export default rootReducer
