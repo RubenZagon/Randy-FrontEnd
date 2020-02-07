@@ -2,20 +2,18 @@ import React, { FC } from "react";
 import styled from '@emotion/styled';
 import { BillCardInterface } from "./types";
 
-interface BillCardProps {
-  card: BillCardInterface
-}
 
-export const BillCard: FC<BillCardProps> = ({ card }) => {
+export const BillCard: FC<BillCardInterface> = (props) => {
+
   return (
-    <Container color={card.color}>
-      <img src={card.image} alt={card.title} />
+    <Container color={props.color}>
+      <img src={props.image} alt={props.title} />
       <ContainerDivision>
         <ContainerInfo>
-          <h3>{card.title} {card.cost} <span>€/{card.frecuency}</span></h3>
+          <h3>{props.title} {props.cost} <span>€/{props.frecuency}</span></h3>
           <p>Días restantes para el siguiente pago: </p>
         </ContainerInfo>
-        <h1>Parte a pagar {card.paymentDivision} €</h1>
+        <h1>Parte a pagar {props.paymentDivision} €</h1>
       </ContainerDivision>
     </Container>
   );

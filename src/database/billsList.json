@@ -1,0 +1,22 @@
+[{
+    "title": "Alquiler",
+    "cost": 700,
+    "frecuency": "Mensual",
+    "color": "LightGreen",
+    "payer": ["ruben", "manz", "Raul"]
+  },
+  {
+    "title": "Agua",
+    "cost": 60,
+    "frecuency": "Trimestral",
+    "color": "lightcyan",
+    "payer": ["ruben", "manz", "Raul"]
+  },
+  {
+    "title": "Pago por ser tu amigo",
+    "cost": 53,
+    "frecuency": "Mensual",
+    "color": "LemonChiffon",
+    "payer": ["ruben", "manz", "Raul"]
+  }
+]

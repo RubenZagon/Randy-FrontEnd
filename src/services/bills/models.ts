@@ -1,4 +1,5 @@
-import {BillCardInterface} from "../../components/bills/types"
+import { BillCardInterface } from "../../components/bills/types"
+
 export const billCardList: BillCardInterface[] = [
   {
     id: 'cqz9tj4jk2iu0j1rmg3y',

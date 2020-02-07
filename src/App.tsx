@@ -8,7 +8,7 @@ import { Home } from "./pages/Home/Home";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Calendar } from "./pages/Calendar/Calendar";
 import { Tasklist } from "./pages/Tasklist/Tasklist";
-import { Bill } from "./pages/Bill/Bill";
+import BillPage from "./pages/Bill/Bill";
 import { Settings } from "./pages/Settings/Settings";
 import { useState } from "react";
 import { ButtonSummit } from "./components/buttonSumit/buttonSumit";
@@ -42,7 +42,7 @@ const App: React.FC = () => {
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/calendar" component={Calendar} />
               <Route path="/tasklist" component={Tasklist} />
-              <Route path="/bill" component={Bill} />
+              <Route path="/bill" component={BillPage} />
               <Route path="/settings" component={Settings} />
             </div>
           </div>

@@ -1,19 +1,19 @@
 import { BillCardInterface } from "../../components/bills/types";
 
 export interface BillState {
-    bills: BillCardInterface[]
-  }
+  bills: BillCardInterface[]
+}
 
 export const GET_BILLS = 'GET_BILLS';
 export const ADD_BILL = 'ADD_BILL'
 
 export interface BillGetAction {
-    type: typeof GET_BILLS
-    id: string
-  }
-export interface BillAddAction {
-    type: typeof ADD_BILL
-    payload: BillCardInterface
+  type: typeof GET_BILLS
+  id: string
 }
-  
-  export type BillActions = BillGetAction | BillAddAction
+export interface BillAddAction {
+  type: typeof ADD_BILL
+  payload: BillCardInterface
+}
+
+export type BillActions = BillGetAction | BillAddAction

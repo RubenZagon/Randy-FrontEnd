@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { BillCard } from "./BillCard";
+import { BillCard } from "./billcard";
 import { connect } from "react-redux";
-import { BillCardInterface } from "./types";
+import { BillState } from "../../redux/bill/billTypes";
 
 
 
 
-const mapStateToProps = (state: BillCardInterface) => {
+const mapStateToProps = (state: BillState) => {
   return {
-    billData: state
+    billData: state.bills
   }
 }
 
@@ -22,3 +22,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(BillCard)
+

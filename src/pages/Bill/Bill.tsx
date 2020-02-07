@@ -2,21 +2,30 @@ import React, { FC } from "react";
 import styled from "@emotion/styled";
 import BillCard from "../../components/bills";
 import { SpendCalculator } from "../../components/spendCalculator/spendCalculator";
-import { BillCardInterface } from "../../components/bills/types";
-interface BillsCardsProps {
-  billData?: BillCardInterface[]
-}
-export const BillsCards: FC<BillsCardsProps> = ({ billData }) => {
-  return (
-  <>
-  {billData && billData.map(bill => <BillCard key={bill.title} card={bill} />)} 
-  </>);
-};
-export const Bill: FC = () => {
+import { connect } from "react-redux";
+import { BillState } from "../../redux/bill/billTypes";
+
+
+const BillPage: FC<BillState> = ({ bills }) => {
   return (
     <Container>
       <span className="billCards">
-        <BillsCards />
+        {bills.length === 0
+          ? <h3>Cargando...</h3>
+          : bills.map((bill) => (
+            <BillCard
+              key={bill.id}
+              id={bill.id}
+              title={bill.title}
+              cost={bill.cost}
+              frecuency={bill.frecuency}
+              color={bill.color}
+              payer={bill.payer}
+              image={bill.image}
+              paymentDivision={bill.paymentDivision}
+            />
+          ))
+        }
       </span>
       <span className="calculator">
         <SpendCalculator />
@@ -24,6 +33,22 @@ export const Bill: FC = () => {
     </Container>
   )
 };
+
+const mapStateToProps = state => ({
+  bills: state.billList.bills
+})
+
+const mapDispatchToProps = dispatch => ({
+  // quitarTitular(jugador) {
+  //   dispatch({
+  //     type: 'QUITAR_TITULAR',
+  //     jugador
+  //   })
+  // }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BillPage)
+
 
 const Container = styled.div`
 display:grid;
