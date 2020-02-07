@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
-import BillCard from "../../components/bills";
-import SpendCalculator from "../../components/spendCalculator/spendCalculator";
+import BillCard from "../../components/bills/index";
+import SpendCalculator from "../../components/spendCalculator/index";
 import { connect } from "react-redux";
 import { BillState } from "../../redux/bill/billTypes";
 
