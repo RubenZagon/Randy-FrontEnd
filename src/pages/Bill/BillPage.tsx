@@ -6,13 +6,18 @@ import { connect } from "react-redux";
 import { BillState } from "../../redux/bill/billTypes";
 
 
-const BillPage: FC<BillState> = ({ bills }) => {
+const BillPage: FC<BillState> = ({ bills }: any) => {
+
+  // const totalSpend = Object.values(bills).reduce((acc: any, { paymentDivision }: any) => acc + paymentDivision, 0)
+  // console.log(totalSpend);
+
   return (
     <Container>
       <span className="billCards">
-        {bills.length === 0
+        {bills === undefined
           ? <h3>Cargando...</h3>
           : bills.map((bill) => (
+
             <BillCard
               key={bill.id}
               id={bill.id}
@@ -34,8 +39,8 @@ const BillPage: FC<BillState> = ({ bills }) => {
   )
 };
 
-const mapStateToProps = state => ({
-  bills: state.billList.bills
+const mapStateToProps = (state: { billData: BillState }) => ({
+  bills: state.billData.billsList
 })
 
 const mapDispatchToProps = dispatch => ({
