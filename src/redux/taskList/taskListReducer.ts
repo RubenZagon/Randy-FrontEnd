@@ -1,14 +1,11 @@
 import { Reducer } from 'react'
 import { TaskActions, TaskState, GET_TASKS, ADD_TASK } from './taskListTypes'
+import { initialTasksList } from '../../services/tasks/models'
+
 
 const initialState: TaskState = {
-  tasks : [
-  {
-    done:false,
-    label:"TEST",
-    uuid:"0"
-  }
-]}
+  tasksList: initialTasksList
+}
 
 const tasksReducer: Reducer<TaskState, TaskActions> = (
   state: TaskState = initialState,
@@ -19,7 +16,7 @@ const tasksReducer: Reducer<TaskState, TaskActions> = (
       return state
     case ADD_TASK:
       return {
-        tasks: [...state.tasks,action.payload]
+        tasksList: [...state.tasksList, action.payload]
       }
     default:
       return state
@@ -28,7 +25,7 @@ const tasksReducer: Reducer<TaskState, TaskActions> = (
 
 export default tasksReducer
 
-// EJEMPLO PARA BUSCAR UNA TALEA CON EL ID Y MARCARLA COMO COMPLETADA
+// EJEMPLO PARA BUSCAR UNA TAREA CON EL ID Y MARCARLA COMO COMPLETADA
 
 // const handleDelete = useCallback(
 //   () => (taskToUpdate: Task) => {

@@ -1,62 +1,53 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useContext, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import Anime from '@mollycule/react-anime';
-import anime from 'animejs';
-import { TaskItem } from "./TaskItem";
 import { NEW_NOTIFY, NotifyContext } from "../circleOfNotifys/notifyProvider";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Tasks } from "../../services/tasks/services";
-import initialTasksDefault from './tasklistDefault';
 import { Transition, TransitionGroup } from "react-transition-group";
+import { TodoListProps } from "./types";
 
 
-export interface Task {
-  uuid: string;
-  label: string;
-  done: boolean;
-}
-
-interface TodoListProps {
-  initialTasks: Task[];
-  url: string;
-}
-
-
-
-export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
+export const TodoList: FC<TodoListProps> = ({ tasks }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
   const [inputTask, setInputTask] = useState('')
 
-  const [taskList, setTaskList] = useState<Task[]>(initialTasksDefault);
+  /////////////////////const [taskList, setTaskList] = useState<Task[]>(initialTasks);
 
-  // useEffect(() => {
-  //   Tasks.getAll()
-  //     .then(tasks => setTaskList(tasks))
-  //     .catch(err => console.log("HE PETAO", err));
-  // }, [url]);
+  /*
 
-  // const handleDelete = useCallback(
-  //   () => (taskToUpdate: Task) => {
-  //     const newTasks = taskList.map(task => {
-  //       if (task.uuid === taskToUpdate.uuid) {
-  //         console.log('Tarea completada - ', task.label);
-  //         return { ...task, done: !task.done };
-  //       }
-  //       return task;
-  //     })
+  useEffect(() => {
+    Tasks.getAll()
+      .then(tasks => setTaskList(tasks))
+      .catch(err => console.log("HE PETAO", err));
+  }, [url]);
 
-  //     setTaskList(newTasks);
-  // }, [taskList]);
+  const handleDelete = useCallback(
+    () => (taskToUpdate: Task) => {
+      const newTasks = taskList.map(task => {
+        if (task.uuid === taskToUpdate.uuid) {
+          console.log('Tarea completada - ', task.label);
+          return { ...task, done: !task.done };
+        }
+        return task;
+      })
+
+      setTaskList(newTasks);
+  }, [taskList]);
+
+  */
+
+
+  ///////////    FUNCIONES PARA EL DISPATCH
 
   const handleDelete = useCallback(
     (index: number) => () => {
-      const newTasks = [...taskList];
-      newTasks.splice(index, 1);
-      setTaskList(newTasks);
-    }, [taskList]);
+      // const newTasks = [...tasks];
+      // newTasks.splice(index, 1);
+
+      // setTaskList(newTasks);
+    }, [tasks]);
 
   const handleInput = (event) => {
     setInputTask(event.target.value)
@@ -64,14 +55,14 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
   }
 
   const addNewTask = () => {
-    const newTasks = [...taskList];
-    inputTask !== '' ?
-      newTasks.push({ uuid: "" + Math.random(), label: inputTask, done: false })
-      : console.warn('Debe introducir un texto válido en el campo de nueva tarea');
-    setTaskList(newTasks);
+    // const newTasks = [...tasks];
+    // inputTask !== '' ?
+    //   newTasks.push({ uuid: "" + Math.random(), label: inputTask, done: false })
+    //   : console.warn('Debe introducir un texto válido en el campo de nueva tarea');
+
+    // setTaskList(newTasks);
     dispatch({ type: NEW_NOTIFY });
   };
-
 
   return (
     <Container>
@@ -80,8 +71,20 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
         <Button onClick={addNewTask}>+ Agregar</Button>
       </HeaderTasks>
 
-      <TransitionGroup>
-        {taskList && taskList.map((task, i) => {
+      {tasks && tasks.map((task, i) => {
+        return (
+          <ContainerTask onClick={handleDelete(i)}>
+            <input type="checkbox" onChange={handleDelete(i)} checked={task.done} value={task.uuid} />
+            <label htmlFor="clearTask">
+              <span></span>
+              <p>{task.label}</p>
+            </label>
+          </ContainerTask>
+        )
+      })}
+
+      {/* <TransitionGroup>
+        {tasks && tasks.map((task, i) => {
           return <Anime
             appear
             key={task.uuid}
@@ -108,10 +111,11 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
             </ContainerTask>
           </Anime>
         })}
-      </TransitionGroup>
+      </TransitionGroup> */}
     </Container>
   );
 };
+
 
 const Container = styled.div`
   display: flex;

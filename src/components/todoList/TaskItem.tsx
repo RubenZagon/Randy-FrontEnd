@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
-import { Task } from "./TodoList";
+import { Task } from "./types";
 
 
 interface TaskProps {
