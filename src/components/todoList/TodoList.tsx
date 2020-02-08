@@ -1,7 +1,6 @@
-import React, { FC, useContext, useState, useCallback } from "react";
+import React, { FC, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import Anime from '@mollycule/react-anime';
-import { NEW_NOTIFY, NotifyContext } from "../circleOfNotifys/notifyProvider";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Transition, TransitionGroup } from "react-transition-group";
 import { TodoListProps } from "./types";
@@ -10,7 +9,6 @@ import { TodoListProps } from "./types";
 export const TodoList: FC<TodoListProps> = ({ tasks }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
   const [inputTask, setInputTask] = useState('')
 
   /////////////////////const [taskList, setTaskList] = useState<Task[]>(initialTasks);
@@ -61,7 +59,9 @@ export const TodoList: FC<TodoListProps> = ({ tasks }) => {
     //   : console.warn('Debe introducir un texto válido en el campo de nueva tarea');
 
     // setTaskList(newTasks);
-    dispatch({ type: NEW_NOTIFY });
+
+
+    //dispatch({ type: NEW_NOTIFY });
   };
 
   return (

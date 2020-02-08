@@ -2,7 +2,7 @@ import { NEW_NOTIFY, RESET_NOTIFYS, NotifyState, NotifyActions } from './notifys
 import { Reducer } from 'react'
 
 const initialState: NotifyState = {
-  count: 0
+  count: 5
 }
 
 const notifysReducer: Reducer<NotifyState, NotifyActions> = (

@@ -1,6 +1,16 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import styled from "@emotion/styled";
-import { NotifyContext } from "./notifyProvider";
+import { NotifysProps } from "./types";
+
+
+
+export const CircleOfNotifys: FC<NotifysProps> = ({ notifys }: any) => {
+  return (
+    <div>
+      {notifys.count > 0 && <CircleNotifys>{notifys.count}</CircleNotifys>}
+    </div>
+  );
+};
 
 
 const CircleNotifys = styled.div`
@@ -15,17 +25,3 @@ const CircleNotifys = styled.div`
   align-items: center;
   font-weight: bold;
 `;
-export interface NotifysProps { }
-
-const CircleOfNotifys: FC<NotifysProps> = () => {
-  const [state] = useContext(NotifyContext);
-
-  return (
-    <div>
-      {state.counter > 0 && <CircleNotifys>{state.counter}</CircleNotifys>}
-    </div>
-  );
-};
-
-export default CircleOfNotifys;
-

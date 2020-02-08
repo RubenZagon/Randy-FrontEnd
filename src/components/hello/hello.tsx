@@ -1,7 +1,7 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import styled from "@emotion/styled";
-import CircleOfNotifys from "../circleOfNotifys/circleOfNotifys";
-import { NotifyContext, RESET_NOTIFYS } from "../circleOfNotifys/notifyProvider";
+import CircleOfNotifys from "../circleOfNotifys";
+
 
 export interface HelloProps {
   name: string;
@@ -21,10 +21,13 @@ const avatarPrint = (
 );
 
 export const Hello: FC<HelloProps> = ({ name, srcAvatar }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
+
+  /*
+  const [state, dispatch] = useContext(NotifyContext);
 
   const handleReadNotifys = () => dispatch({ type: RESET_NOTIFYS });
+
+  */
 
   return (
     <>
@@ -33,7 +36,7 @@ export const Hello: FC<HelloProps> = ({ name, srcAvatar }) => {
         {srcAvatar !== "" && (
           <div>
             <LandscapeImage>
-              <Image src={srcAvatar} alt="Avatar" onClick={handleReadNotifys} />
+              <Image src={srcAvatar} alt="Avatar" onClick={() => console.log('handleReadNotifys')} />
             </LandscapeImage>
           </div>
         )}
