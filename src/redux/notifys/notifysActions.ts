@@ -1,8 +1,14 @@
-import { ADD_NOTIFY } from './notifysTypes'
+import { NEW_NOTIFY, NotifyActions, RESET_NOTIFYS } from './notifysTypes'
 
-export const addNotify = () => {
+
+export const addNotify = (): NotifyActions => {
   return {
-    type: ADD_NOTIFY
+    type: NEW_NOTIFY
   }
 }
 
+export const resetNotifys = (): NotifyActions => {
+  return {
+    type: RESET_NOTIFYS
+  }
+}
