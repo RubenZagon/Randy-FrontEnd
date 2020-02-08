@@ -1,5 +1,6 @@
 import React, { FC, useState, useCallback } from "react";
 import styled from "@emotion/styled";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Anime from '@mollycule/react-anime';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Transition, TransitionGroup } from "react-transition-group";
@@ -73,7 +74,7 @@ export const TodoList: FC<TodoListProps> = ({ tasks }) => {
 
       {tasks && tasks.map((task, i) => {
         return (
-          <ContainerTask onClick={handleDelete(i)}>
+          <ContainerTask key={task.uuid} onClick={handleDelete(i)}>
             <input type="checkbox" onChange={handleDelete(i)} checked={task.done} value={task.uuid} />
             <label htmlFor="clearTask">
               <span></span>
