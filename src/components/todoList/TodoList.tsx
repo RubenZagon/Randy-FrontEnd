@@ -5,9 +5,10 @@ import Anime from '@mollycule/react-anime';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Transition, TransitionGroup } from "react-transition-group";
 import { TodoListProps } from "./types";
+import { uniqueId } from "../../utils/uniqueId";
 
 
-export const TodoList: FC<TodoListProps> = ({ tasks }) => {
+export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [inputTask, setInputTask] = useState('')
@@ -54,15 +55,12 @@ export const TodoList: FC<TodoListProps> = ({ tasks }) => {
   }
 
   const addNewTask = () => {
-    // const newTasks = [...tasks];
-    // inputTask !== '' ?
-    //   newTasks.push({ uuid: "" + Math.random(), label: inputTask, done: false })
-    //   : console.warn('Debe introducir un texto válido en el campo de nueva tarea');
-
-    // setTaskList(newTasks);
-
-
-    //dispatch({ type: NEW_NOTIFY });
+    if (inputTask !== '') {
+      addNotify()
+      addTask({ uuid: uniqueId(), label: inputTask, done: false })
+    } else {
+      console.warn('Debe introducir un texto válido en el campo de nueva tarea');
+    }
   };
 
   return (

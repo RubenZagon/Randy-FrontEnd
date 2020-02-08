@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { BillCardInterface } from "./types";
 
 
-export const BillCard: FC<BillCardInterface> = (props, calculateTotalCost) => {
+export const BillCard: FC<BillCardInterface> = (props) => {
 
   return (
     <Container color={props.color}>
@@ -13,7 +13,7 @@ export const BillCard: FC<BillCardInterface> = (props, calculateTotalCost) => {
           <h3>{props.title} {props.cost} <span>€/{props.frecuency}</span></h3>
           <p>Días restantes para el siguiente pago: </p>
         </ContainerInfo>
-        <h2 onClick={() => calculateTotalCost()}>Parte a pagar {props.paymentDivision} €</h2>
+        <h2>Parte a pagar {props.paymentDivision} €</h2>
       </ContainerDivision>
     </Container>
   );

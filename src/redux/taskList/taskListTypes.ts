@@ -11,7 +11,7 @@ export const ADD_TASK = 'ADD_TASK'
 
 export interface TaskGetAction {
   type: typeof GET_TASKS
-  id: number
+  id: string
 }
 
 export interface TaskAddAction {
