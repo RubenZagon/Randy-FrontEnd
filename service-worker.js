@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Randy-FrontEnd/precache-manifest.a940b2951520cb23a8d408bcf3bc0553.js"
+  "/Randy-FrontEnd/precache-manifest.89c206f4c6eebf44dde39378c47820a0.js"
 );
 
 self.addEventListener('message', (event) => {
