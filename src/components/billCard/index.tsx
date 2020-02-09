@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BillCard } from "./billcard";
 import { connect } from "react-redux";
 import { BillState } from "../../redux/bill/billTypes";

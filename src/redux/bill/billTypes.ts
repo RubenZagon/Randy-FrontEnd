@@ -1,4 +1,4 @@
-import { BillCardInterface } from "../../components/bills/types";
+import { BillCardInterface } from "../../components/billCard/types";
 
 export interface BillState {
   billsList: BillCardInterface[],

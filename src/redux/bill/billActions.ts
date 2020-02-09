@@ -1,5 +1,5 @@
 import { ADD_BILL, BillActions, GET_BILLS } from './billTypes'
-import { BillCardInterface } from "../../components/bills/types"
+import { BillCardInterface } from "../../components/billCard/types"
 
 export function addBill(bill: BillCardInterface): BillActions {
   return {

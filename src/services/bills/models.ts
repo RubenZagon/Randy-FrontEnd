@@ -1,4 +1,4 @@
-import { BillCardInterface } from "../../components/bills/types"
+import { BillCardInterface } from "../../components/billCard/types"
 import billsList from '../../database/billsList.json'
 import { uniqueId } from "../../utils/uniqueId";
 

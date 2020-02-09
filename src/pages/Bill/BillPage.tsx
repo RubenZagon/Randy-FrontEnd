@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
-import BillCard from "../../components/bills/index";
+import BillCard from "../../components/billCard/index";
 import SpendCalculator from "../../components/spendCalculator/index";
 import { connect } from "react-redux";
 import { BillState } from "../../redux/bill/billTypes";
@@ -40,14 +40,7 @@ const mapStateToProps = (state: { billData: BillState }) => ({
   bills: state.billData.billsList
 })
 
-const mapDispatchToProps = dispatch => ({
-  // quitarTitular(jugador) {
-  //   dispatch({
-  //     type: 'QUITAR_TITULAR',
-  //     jugador
-  //   })
-  // }
-})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillPage)
 
