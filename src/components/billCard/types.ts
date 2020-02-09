@@ -1,5 +1,5 @@
-type frecuency = "Mensual" | "Trimestral";
-type colorCard = "lightcoral" | "LemonChiffon" | "LightGreen" | "lightcyan";
+export type frecuency = "Mensual" | "Trimestral";
+export type colorCard = "lightcoral" | "LemonChiffon" | "LightGreen" | "lightcyan" | "lightgrey";
 
 export interface BillCardInterface {
   id: string,

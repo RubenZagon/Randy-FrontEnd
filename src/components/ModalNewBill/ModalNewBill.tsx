@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from '@emotion/styled';
 import { ModalNewBillInterface } from "./types";
+import { colorCard } from "../billCard/types";
 
 
 /*  ESTRUCTURA DE INPUTS DEL FORM
@@ -12,6 +13,8 @@ import { ModalNewBillInterface } from "./types";
     "payer": ["ruben", "manz", "Raul"]
 
 */
+const checkboxsColors: colorCard[] = ['lightcoral', 'LemonChiffon', 'LightGreen', 'lightcyan', 'lightgrey'];
+const payersGroup: string[] = ["Sonia", "Oscar", "Yasmina"];
 
 export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, children }) => {
   const showHideClassName: string = show ? "display-block" : ""
@@ -20,58 +23,91 @@ export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, chi
     <Container className={showHideClassName}>
       <form action="" method="get">
         <Seccion>
+          <ContainerInput>
+            <label htmlFor="title">Título:</label>
+            <InputBill type="text" id='title' placeholder="Ejemplo: Alquiler" required autoFocus />
+          </ContainerInput>
+          <ContainerInput>
+            <label htmlFor="cost">Coste:</label>
+            <InputBill type="number" id='cost' placeholder="Ejemplo: 700" required />
+          </ContainerInput>
 
-          <label htmlFor="title">Nombre de la factura:</label>
-          <InputTask type="text" id='title' placeholder="Ejemplo: Alquiler" required />
-          <label htmlFor="cost">Coste:</label>
-          <InputTask type="number" id='cost' placeholder="Ejemplo: 700" required />
 
-
-          <fieldset>
-            <legend>Frecuencia:</legend>
-
-            <input type="radio" name="frecuency" id="mensual" checked />
-            <label htmlFor="mensual">Mensual</label>
-
-            <input type="radio" name="frecuency" id="trimestral" />
-            <label htmlFor="trimestral">Trimestral</label>
+          <fieldset className='frecuency'>
+            <legend> Frecuencia </legend>
+            <div>
+              <label htmlFor="mensual">
+                <input type="radio" name="frecuency" id="mensual" checked />
+                Mensual
+              </label>
+              <label htmlFor="trimestral">
+                <input type="radio" name="frecuency" id="trimestral" />
+                Trimestral
+              </label>
+            </div>
           </fieldset>
 
           <fieldset className='color'>
-            <legend>Color:</legend>
+            <legend> Color </legend>
 
-            <input type="radio" name="color" id="lightsalmon" color='lightsalmon' checked />
-
-            <input type="radio" name="color" id="blue" />
+            <div>
+              {checkboxsColors.map((colorEL) => (
+                <input style={{ backgroundColor: colorEL }} type="radio" name="color" id={colorEL.toLowerCase()} />
+              ))}
+            </div>
 
           </fieldset>
 
           <fieldset className='payer'>
-            <legend>Pagadores:</legend>
+            <legend> Pagadores </legend>
 
             <span>
-              <input type="checkbox" name="payer" id="mensual" />
-              <label htmlFor="mensual">Sonia</label>
+              <input type="checkbox" name="payer" id="sonia" />
+              <label htmlFor="payer">Sonia</label>
             </span>
             <span>
-              <input type="checkbox" name="payer" id="trimestral" />
-              <label htmlFor="trimestral">Oscar</label>
+              <input type="checkbox" name="payer" id="oscar" />
+              <label htmlFor="payer">Oscar</label>
             </span>
             <span>
-              <input type="checkbox" name="payer" id="trimestral" />
-              <label htmlFor="trimestral">Yasmina</label>
+              <input type="checkbox" name="payer" id="yasmina" />
+              <label htmlFor="payer">Yasmina</label>
             </span>
           </fieldset>
 
-          <div>
-            <button onClick={handleClose}>Cerrar</button>
-            <input type='submit' value='Crear' />
+          <div className='footer-buttons'>
+            <ButtonSubmit type='submit' value='Crear' />
+            <ButtonClose onClick={handleClose}>Cerrar</ButtonClose>
           </div>
         </Seccion>
       </form>
     </Container>
   );
 };
+
+const buttonsStyle = `
+  font-size: 1em;
+  height: 40px;
+  min-width: 100px;
+  width: 50%;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid white;
+  outline:0;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+`
+const ButtonClose = styled.button`
+  background: darkred;
+  ${buttonsStyle}
+`
+const ButtonSubmit = styled.input`
+  background: #47ab43;
+  font-weight:bold;
+  ${buttonsStyle}
+`
 
 
 const Container = styled.div`
@@ -87,66 +123,16 @@ const Container = styled.div`
   &.display-block{
     display:block;
   }
-
-
-/* COLOR */
-    > fieldset,.color{
-      display:flex;
-      flex-direction:row;
-
-      input {
-        cursor: pointer;
-        border-radius: 100%;
-        display: flex;
-        justify-content:center;
-        align-items:center;
-        height: 20px;
-        margin-right: 15px;
-        width: 20px;
-        -webkit-appearance: none;
-
-      ::after{
-          border-radius: 100%;
-          content: '';
-          height: 15px;
-          width: 15px;
-        }
-
-        :checked{
-          background-color: black;
-        }
-      }
-
-      input:nth-of-type(1)::after{
-          background-color: blue;
-        }
-        input:nth-of-type(2)::after{
-          background-color: red;
-        }
-    }
-
-
-/* PAGADORES */
-    > fieldset,.payer{
-    input {
-      cursor: pointer;
-    }
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-
-      > span {
-        margin: 2px;
-        padding: 5px;
-      }
-    }
 `
 const Seccion = styled.section`
+  border-radius:10px;
   position:fixed;
   background: white;
-  width: 80%;
+  min-width: 250px;
+  width: 40%;
+  max-width: 350px;
   height: auto;
-  padding:3rem;
+  padding:2rem;
 
   top:50%;
   left:50%;
@@ -155,12 +141,68 @@ const Seccion = styled.section`
   display:flex;
   flex-direction:column;
 
+  > fieldset {
+    margin-bottom:10px;
+  }
+
+/* FRECUENIA */
+  > fieldset,.frecuency{
+    >div{
+      display:flex;
+      justify-content:space-around;
+    }
+
+  }
+/* COLOR */
+    > .color{
+      > div{
+        display:flex;
+        justify-content:space-around;
+      }
+
+      input {
+        cursor: pointer;
+        border-radius: 100%;
+        height: 20px;
+        width: 20px;
+        -webkit-appearance: none;
+
+        :checked{
+          border-radius: 0%;
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+
+
+/* PAGADORES */
+    > .payer{
+
+    input {
+      cursor: pointer;
+    }
+      display:flex;
+      flex-direction:column;
+
+      > span {
+        margin: 2px;
+        padding: 5px;
+      }
+    }
+
+/* BOTONES */
+    > .footer-buttons{
+      display:flex;
+      justify-content:space-around;
+    }
+
 `
 
-const InputTask = styled.input`
+const InputBill = styled.input`
 padding: 10px 5px 5px 0px;
 margin-right: 5%;
-width: 70%;
+width: 100%;
 font-size: 1em;
 border: 0px;
 border-bottom: 3px lightgray solid;
@@ -178,4 +220,13 @@ border-bottom: 3px lightgray solid;
   border: 1px red solid;
 } */
 
+`
+const ContainerInput = styled.div`
+display:flex;
+flex-direction:column;
+margin-bottom:15px;
+
+  > label{
+    margin-bottom:5px;
+  }
 `
