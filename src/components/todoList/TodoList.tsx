@@ -1,19 +1,14 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useState } from "react";
 import styled from "@emotion/styled";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Anime from '@mollycule/react-anime';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Transition, TransitionGroup } from "react-transition-group";
+import { TransitionGroup } from "react-transition-group";
 import { TodoListProps } from "./types";
 import { uniqueId } from "../../utils/uniqueId";
 
 
-export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask }) => {
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [inputTask, setInputTask] = useState('')
-
-  /////////////////////const [taskList, setTaskList] = useState<Task[]>(initialTasks);
+export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask, removeTask }) => {
+  const [inputTask, setInputTask] = useState('');
 
   /*
 
@@ -22,42 +17,18 @@ export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask }) => {
       .then(tasks => setTaskList(tasks))
       .catch(err => console.log("HE PETAO", err));
   }, [url]);
-
-  const handleDelete = useCallback(
-    () => (taskToUpdate: Task) => {
-      const newTasks = taskList.map(task => {
-        if (task.uuid === taskToUpdate.uuid) {
-          console.log('Tarea completada - ', task.label);
-          return { ...task, done: !task.done };
-        }
-        return task;
-      })
-
-      setTaskList(newTasks);
-  }, [taskList]);
-
-  */
-
-
-  ///////////    FUNCIONES PARA EL DISPATCH
-
-  const handleDelete = useCallback(
-    (index: number) => () => {
-      // const newTasks = [...tasks];
-      // newTasks.splice(index, 1);
-
-      // setTaskList(newTasks);
-    }, [tasks]);
+*/
 
   const handleInput = (event) => {
-    setInputTask(event.target.value)
+    setInputTask(event.target.value);
     event.target.value = "";
   }
 
   const addNewTask = () => {
     if (inputTask !== '') {
-      addNotify()
-      addTask({ uuid: uniqueId(), label: inputTask, done: false })
+      addNotify();
+      addTask({ uuid: uniqueId(), label: inputTask, done: false });
+      setInputTask('');
     } else {
       console.warn('Debe introducir un texto válido en el campo de nueva tarea');
     }
@@ -70,21 +41,9 @@ export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask }) => {
         <Button onClick={addNewTask}>+ Agregar</Button>
       </HeaderTasks>
 
-      {tasks && tasks.map((task, i) => {
-        return (
-          <ContainerTask key={task.uuid} onClick={handleDelete(i)}>
-            <input type="checkbox" onChange={handleDelete(i)} checked={task.done} value={task.uuid} />
-            <label htmlFor="clearTask">
-              <span></span>
-              <p>{task.label}</p>
-            </label>
-          </ContainerTask>
-        )
-      })}
-
-      {/* <TransitionGroup>
-        {tasks && tasks.map((task, i) => {
-          return <Anime
+      <TransitionGroup>
+        {tasks && tasks.map((task, i) => (
+          <Anime
             appear
             key={task.uuid}
             onEntering={{
@@ -101,16 +60,17 @@ export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask }) => {
             }}
             duration={300}
           >
-            <ContainerTask onClick={handleDelete(i)}>
-              <input type="checkbox" onChange={handleDelete(i)} checked={task.done} value={task.uuid} />
+            <ContainerTask key={task.uuid} onClick={() => removeTask(task.uuid)}>
+              {/* <input type="checkbox" onChange={() => removeTask(task.uuid)} checked={task.done} value={task.uuid} /> */}
+              <input type="checkbox" onChange={() => console.log()} checked={task.done} value={task.uuid} />
               <label htmlFor="clearTask">
                 <span></span>
                 <p>{task.label}</p>
               </label>
             </ContainerTask>
           </Anime>
-        })}
-      </TransitionGroup> */}
+        ))}
+      </TransitionGroup>
     </Container>
   );
 };
