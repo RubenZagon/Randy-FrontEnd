@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
-import { Task } from "./TodoList";
+import { Task } from "./types";
+
 
 interface TaskProps {
   task: Task;
@@ -13,17 +14,19 @@ export const TaskItem: FC<TaskProps> = ({ task, onCheckInput }) => {
   };
 
   return (
-    <Container onClick={handleOnSelect}>
+    <ContainerTask onClick={handleOnSelect}>
+
       <input type="checkbox" onChange={handleOnSelect} checked={task.done} value={task.uuid} />
       <label htmlFor="clearTask">
         <span></span>
-        {task.label}
+        <p>{task.label}</p>
       </label>
-    </Container>
+
+    </ContainerTask>
   );
 };
 
-const Container = styled.div`
+const ContainerTask = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,6 +35,17 @@ const Container = styled.div`
   margin: 3px 0px;
   padding: 7px 15px;
   cursor: pointer;
+
+  p {
+    margin:0px;
+    padding:0px;
+  }
+
+  label{
+    display:flex;
+    align-content:center;
+  }
+
   &:hover {
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.3);
     transform: translateY(-5px);
@@ -42,19 +56,19 @@ const Container = styled.div`
   }
 
   & input[type="checkbox"] + label span {
-    background: lightgray;
+    background: #EAEAEA;
     display: inline-block;
     width: 20px;
     height: 20px;
     margin-right: 15px;
-    vertical-align: center;
-    border: 2px solid gray;
+    border: 2px solid lightgray;
     border-radius: 5px;
     cursor: pointer;
   }
 
-  & input[type="checkbox"]:checked + label span {
-    background: red;
+  & input[type="checkbox"]:checked + label span{
+    background: #47AB43;
     background-size: cover;
   }
+
 `;

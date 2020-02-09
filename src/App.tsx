@@ -8,10 +8,51 @@ import { Home } from "./pages/Home/Home";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Calendar } from "./pages/Calendar/Calendar";
 import { Tasklist } from "./pages/Tasklist/Tasklist";
-import { Bill } from "./pages/Bill/Bill";
+import BillPage from "./pages/Bill/BillPage";
 import { Settings } from "./pages/Settings/Settings";
 import { useState } from "react";
 import { ButtonSummit } from "./components/buttonSumit/buttonSumit";
+
+
+
+const App: React.FC = () => {
+  //VOLVER VALOR A FALSE PARA TENER MODO LOGIN
+  const [isUserLogged, setIsUserLogged] = useState(true);
+
+  const handleLogin = () => {
+    setIsUserLogged(false);
+  };
+
+  return (
+    <Router>
+      {!isUserLogged && (
+        <ContainterHome>
+          <Route path="/" component={Home} />
+          <ButtonSummit path="/dashboard" content="Loguearse" functionOnClick={handleLogin}></ButtonSummit>
+        </ContainterHome>
+      )}
+      {isUserLogged && (
+        <Container>
+          <div className="containerNavigator">
+            <Navigator />
+          </div>
+          <div className="page">
+            <HeaderTop className="header" />
+            <div className="content">
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path="/tasklist" component={Tasklist} />
+              <Route path="/bill" component={BillPage} />
+              <Route path="/settings" component={Settings} />
+            </div>
+          </div>
+        </Container>
+      )}
+    </Router>
+  );
+};
+
+export default App;
 
 const Container = styled.div`
   background: white;
@@ -44,42 +85,3 @@ const ContainterHome = styled.div`
   align-content: center;
   align-items: center;
 `;
-
-const App: React.FC = () => {
-  //VOLVER VALOR A FALSE PARA TENER MODO LOGIN
-  const [isUserLogged, setIsUserLogged] = useState(true);
-
-  const handleLogin = () => {
-    setIsUserLogged(true);
-  };
-
-  return (
-    <Router>
-      {!isUserLogged && (
-        <ContainterHome>
-          <Route path="/" component={Home} />
-          <ButtonSummit path="/dashboard" content="Loguearse" functionOnClick={handleLogin}></ButtonSummit>
-        </ContainterHome>
-      )}
-      {isUserLogged && (
-        <Container>
-          <div className="containerNavigator">
-            <Navigator />
-          </div>
-          <div className="page">
-            <HeaderTop className="header" />
-            <div className="content">
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/calendar" component={Calendar} />
-              <Route path="/tasklist" component={Tasklist} />
-              <Route path="/bill" component={Bill} />
-              <Route path="/settings" component={Settings} />
-            </div>
-          </div>
-        </Container>
-      )}
-    </Router>
-  );
-};
-
-export default App;

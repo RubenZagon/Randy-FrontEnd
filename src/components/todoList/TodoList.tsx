@@ -1,26 +1,21 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useState, useCallback } from "react";
 import styled from "@emotion/styled";
-import { TaskItem } from "./TaskItem";
-import { NEW_NOTIFY, NotifyContext } from "../circleOfNotifys/notifyProvider";
-import { Tasks } from "../../services/tasks/services";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Anime from '@mollycule/react-anime';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Transition, TransitionGroup } from "react-transition-group";
+import { TodoListProps } from "./types";
+import { uniqueId } from "../../utils/uniqueId";
 
-export interface Task {
-  uuid: string;
-  label: string;
-  done: boolean;
-}
 
-interface TodoListProps {
-  initialTasks: Task[];
-  url: string;
-}
+export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask }) => {
 
-export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [state, dispatch] = useContext(NotifyContext); // eslint-disable-next-line
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+  const [inputTask, setInputTask] = useState('')
 
-  const [taskList, setTaskList] = useState();
+  /////////////////////const [taskList, setTaskList] = useState<Task[]>(initialTasks);
+
+  /*
 
   useEffect(() => {
     Tasks.getAll()
@@ -28,33 +23,98 @@ export const TodoList: FC<TodoListProps> = ({ initialTasks = [], url }) => {
       .catch(err => console.log("HE PETAO", err));
   }, [url]);
 
-  const handleOnCheckInput = (taskToUpdate: Task) => {
-    const newTasks = tasks.map(task => {
-      if (task.uuid === taskToUpdate.uuid) {
-        return { ...task, done: !task.done };
-      }
-      return task;
-    });
-    setTasks(newTasks);
-  };
+  const handleDelete = useCallback(
+    () => (taskToUpdate: Task) => {
+      const newTasks = taskList.map(task => {
+        if (task.uuid === taskToUpdate.uuid) {
+          console.log('Tarea completada - ', task.label);
+          return { ...task, done: !task.done };
+        }
+        return task;
+      })
+
+      setTaskList(newTasks);
+  }, [taskList]);
+
+  */
+
+
+  ///////////    FUNCIONES PARA EL DISPATCH
+
+  const handleDelete = useCallback(
+    (index: number) => () => {
+      // const newTasks = [...tasks];
+      // newTasks.splice(index, 1);
+
+      // setTaskList(newTasks);
+    }, [tasks]);
+
+  const handleInput = (event) => {
+    setInputTask(event.target.value)
+    event.target.value = "";
+  }
 
   const addNewTask = () => {
-    // const newTasks = [...tasks];
-    // newTasks.push({ uuid: "" + Math.random(), label: `Todo-${Math.random()}`, done: false });
-    // setTasks(newTasks);
-    dispatch({ type: NEW_NOTIFY });
+    if (inputTask !== '') {
+      addNotify()
+      addTask({ uuid: uniqueId(), label: inputTask, done: false })
+    } else {
+      console.warn('Debe introducir un texto válido en el campo de nueva tarea');
+    }
   };
 
   return (
     <Container>
       <HeaderTasks>
-        <InputTask type='text' name='inputTask' placeholder="Ejemplo: Tender la ropa" />
+        <InputTask type='text' onBlur={event => handleInput(event)} name='inputTask' placeholder="Ejemplo: Tender la ropa" />
         <Button onClick={addNewTask}>+ Agregar</Button>
       </HeaderTasks>
-      {taskList && taskList.map(task => <TaskItem key={task.uuid} task={task} onCheckInput={handleOnCheckInput} />)}
+
+      {tasks && tasks.map((task, i) => {
+        return (
+          <ContainerTask key={task.uuid} onClick={handleDelete(i)}>
+            <input type="checkbox" onChange={handleDelete(i)} checked={task.done} value={task.uuid} />
+            <label htmlFor="clearTask">
+              <span></span>
+              <p>{task.label}</p>
+            </label>
+          </ContainerTask>
+        )
+      })}
+
+      {/* <TransitionGroup>
+        {tasks && tasks.map((task, i) => {
+          return <Anime
+            appear
+            key={task.uuid}
+            onEntering={{
+              translateY: [-100, 0],
+              opacity: [0, 1],
+              duration: 200,
+              delay: i * 40
+            }}
+            onExiting={{
+              translateX: "100%",
+              opacity: 0,
+              easing: "easeInOutQuad",
+              duration: 300
+            }}
+            duration={300}
+          >
+            <ContainerTask onClick={handleDelete(i)}>
+              <input type="checkbox" onChange={handleDelete(i)} checked={task.done} value={task.uuid} />
+              <label htmlFor="clearTask">
+                <span></span>
+                <p>{task.label}</p>
+              </label>
+            </ContainerTask>
+          </Anime>
+        })}
+      </TransitionGroup> */}
     </Container>
   );
 };
+
 
 const Container = styled.div`
   display: flex;
@@ -100,3 +160,51 @@ border-bottom: 3px lightgray solid;
   border-bottom: 3px green solid;
 }
 `
+
+const ContainerTask = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: white;
+  border-radius: 5px;
+  margin: 3px 0px;
+  padding: 7px 15px;
+  cursor: pointer;
+
+  p {
+    margin:0px;
+    padding:0px;
+  }
+
+  label{
+    display:flex;
+    align-content:center;
+  }
+
+  &:hover {
+    /* box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.3); */
+    /* transform: translateY(-5px); */
+    background: lightgreen;
+  }
+
+  & input[type="checkbox"] {
+    display: none;
+  }
+
+  & input[type="checkbox"] + label span {
+    background: #EAEAEA;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  & input[type="checkbox"]:checked + label span{
+    background: #47AB43;
+    background-size: cover;
+  }
+
+`;
