@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/Randy-FrontEnd/static/css/main.ee01e931.chunk.css",
-    "main.js": "/Randy-FrontEnd/static/js/main.06483d4d.chunk.js",
-    "main.js.map": "/Randy-FrontEnd/static/js/main.06483d4d.chunk.js.map",
+    "main.js": "/Randy-FrontEnd/static/js/main.7128635b.chunk.js",
+    "main.js.map": "/Randy-FrontEnd/static/js/main.7128635b.chunk.js.map",
     "runtime-main.js": "/Randy-FrontEnd/static/js/runtime-main.42da3fbe.js",
     "runtime-main.js.map": "/Randy-FrontEnd/static/js/runtime-main.42da3fbe.js.map",
-    "static/js/2.deb41db9.chunk.js": "/Randy-FrontEnd/static/js/2.deb41db9.chunk.js",
-    "static/js/2.deb41db9.chunk.js.map": "/Randy-FrontEnd/static/js/2.deb41db9.chunk.js.map",
+    "static/js/2.90c413c1.chunk.js": "/Randy-FrontEnd/static/js/2.90c413c1.chunk.js",
+    "static/js/2.90c413c1.chunk.js.map": "/Randy-FrontEnd/static/js/2.90c413c1.chunk.js.map",
     "index.html": "/Randy-FrontEnd/index.html",
-    "precache-manifest.89c206f4c6eebf44dde39378c47820a0.js": "/Randy-FrontEnd/precache-manifest.89c206f4c6eebf44dde39378c47820a0.js",
+    "precache-manifest.f5a7b540bbd03d72d50cefe5c8bfce97.js": "/Randy-FrontEnd/precache-manifest.f5a7b540bbd03d72d50cefe5c8bfce97.js",
     "service-worker.js": "/Randy-FrontEnd/service-worker.js",
     "static/css/main.ee01e931.chunk.css.map": "/Randy-FrontEnd/static/css/main.ee01e931.chunk.css.map",
-    "static/js/2.deb41db9.chunk.js.LICENSE": "/Randy-FrontEnd/static/js/2.deb41db9.chunk.js.LICENSE"
+    "static/js/2.90c413c1.chunk.js.LICENSE": "/Randy-FrontEnd/static/js/2.90c413c1.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.42da3fbe.js",
-    "static/js/2.deb41db9.chunk.js",
+    "static/js/2.90c413c1.chunk.js",
     "static/css/main.ee01e931.chunk.css",
-    "static/js/main.06483d4d.chunk.js"
+    "static/js/main.7128635b.chunk.js"
   ]
 }
