@@ -10,19 +10,8 @@ import { colorCard, BillCardInterface } from "../billCard/types";
     "cost": 700,
     "frecuency": "Mensual",
     "color": "LightGreen",
-    "payer": ["ruben", "manz", "Raul"]
+    "payer": ["ruben"]
 
-
-        {
-      id: "0",
-      title: "",
-      cost: 0,
-      frecuency: "Mensual",
-      color: "lightcoral",
-      payer: ['Jhon'],
-      image: "",
-      paymentDivision: 0
-    }
 */
 
 const checkboxsColors: colorCard[] = ['lightcoral', 'LemonChiffon', 'LightGreen', 'lightcyan', 'lightgrey'];
@@ -42,12 +31,14 @@ export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, add
   const [payload, setPayload] = useState<BillCardInterface>(initialState)
 
   function handleSumit(event, input: InputOptions) {
+    const valueInput = event.target.value
     switch (input) {
       case "title":
-        setPayload({ ...payload, title: event.target.value })
+        const titleWithFirsLetterUpperCase = valueInput.charAt(0).toLocaleUpperCase() + valueInput.substr(1);
+        setPayload({ ...payload, title: titleWithFirsLetterUpperCase })
         break;
       case "cost":
-        setPayload({ ...payload, cost: event.target.value })
+        setPayload({ ...payload, cost: valueInput })
         break;
       default:
         break;

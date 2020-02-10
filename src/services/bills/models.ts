@@ -7,7 +7,7 @@ export const billCardList: BillCardInterface[] = billsList.map((bill: any) => {
     id: uniqueId(),
     ...bill,
     image: selectImage(bill.title),
-    paymentDivision: toNumber((bill.cost / bill.payer.length).toFixed(2))
+    paymentDivision: toNumber((bill.cost / (bill.payer.length + 1)).toFixed(2))
   }
 })
 

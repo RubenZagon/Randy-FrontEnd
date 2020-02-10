@@ -20,7 +20,6 @@ export interface BillAddAction {
 }
 export interface BillCalculateTotalCostAction {
   type: typeof CALCULATE_TOTAL_COST
-  total: number
 }
 
 export type BillActions = BillGetAction | BillAddAction | BillCalculateTotalCostAction

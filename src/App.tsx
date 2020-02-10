@@ -8,10 +8,10 @@ import { Home } from "./pages/Home/Home";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Calendar } from "./pages/Calendar/Calendar";
 import { Tasklist } from "./pages/Tasklist/Tasklist";
-import BillPage from "./pages/Bill/BillPage";
 import { Settings } from "./pages/Settings/Settings";
 import { useState } from "react";
 import { ButtonSummit } from "./components/buttonSumit/buttonSumit";
+import BillPage from "./pages/Bill/index";
 
 
 

@@ -1,16 +1,15 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import BillCard from "../../components/billCard/index";
 import SpendCalculator from "../../components/spendCalculator/index";
-import { connect } from "react-redux";
 import { BillState } from "../../redux/bill/billTypes";
 import ButtonNewBill from "../../components/ButtonNewBill";
 import ModalNewBill from "../../components/ModalNewBill";
 
 
-const BillPage: FC<BillState> = ({ bills }: any) => {
+export const BillPage: FC<BillState> = ({ bills, calculateTotalCost }: any) => {
 
-  const [modalState, setModalState] = useState<boolean>(true);
+  const [modalState, setModalState] = useState<boolean>(false);
 
   function showModal() {
     setModalState(true)
@@ -18,6 +17,10 @@ const BillPage: FC<BillState> = ({ bills }: any) => {
   function hideModal() {
     setModalState(false)
   }
+
+  useEffect(() => {
+    calculateTotalCost()
+  }, [bills, calculateTotalCost])
 
   return (
     <Container>
@@ -48,15 +51,6 @@ const BillPage: FC<BillState> = ({ bills }: any) => {
     </Container>
   )
 };
-
-const mapStateToProps = (state: { billData: BillState }) => ({
-  bills: state.billData.billsList
-})
-
-const mapDispatchToProps = dispatch => ({})
-
-export default connect(mapStateToProps, mapDispatchToProps)(BillPage)
-
 
 const Container = styled.div`
 margin-top:10px;

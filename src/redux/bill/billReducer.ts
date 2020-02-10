@@ -22,7 +22,7 @@ const billReducer: Reducer<BillState, BillActions> = (
         id: uniqueId(),
         ...action.payload,
         image: selectImage(action.payload.title),
-        paymentDivision: toNumber((action.payload.cost / action.payload.payers.length).toFixed(2))
+        paymentDivision: toNumber((action.payload.cost / (action.payload.payers.length + 1)).toFixed(2))
       }
 
       return {
