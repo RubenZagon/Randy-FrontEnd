@@ -1,3 +1,5 @@
+import './stylePreview.css'
+
 import {
   addParameters
 } from '@storybook/react';
