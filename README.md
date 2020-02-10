@@ -10,7 +10,9 @@
 ## Página principal 
 :construction_worker::construction:En construcción...Actualmente al quitar la conexión con Backend hay opciones que no se van a mostrar:construction:
 
-[Randy](https://randytools.netlify.com/)
+[Randy](https://rubenzagon.github.io/Randy-FrontEnd/)
+
+[StoryBook-Randy](https://storybookrandy.netlify.com)
 
 ## Diseño :hear_no_evil:
 

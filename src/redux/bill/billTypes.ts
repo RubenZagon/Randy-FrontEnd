@@ -1,4 +1,4 @@
-import { BillCardInterface } from "../../components/bills/types";
+import { BillCardInterface } from "../../components/billCard/types";
 
 export interface BillState {
   billsList: BillCardInterface[],
@@ -20,7 +20,6 @@ export interface BillAddAction {
 }
 export interface BillCalculateTotalCostAction {
   type: typeof CALCULATE_TOTAL_COST
-  total: number
 }
 
 export type BillActions = BillGetAction | BillAddAction | BillCalculateTotalCostAction

@@ -1,15 +1,31 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import BillCard from "../../components/bills/index";
+import BillCard from "../../components/billCard/index";
 import SpendCalculator from "../../components/spendCalculator/index";
-import { connect } from "react-redux";
 import { BillState } from "../../redux/bill/billTypes";
+import ButtonNewBill from "../../components/ButtonNewBill";
+import ModalNewBill from "../../components/ModalNewBill";
 
 
-const BillPage: FC<BillState> = ({ bills }: any) => {
+export const BillPage: FC<BillState> = ({ bills, calculateTotalCost }: any) => {
+
+  const [modalState, setModalState] = useState<boolean>(false);
+
+  function showModal() {
+    setModalState(true)
+  }
+  function hideModal() {
+    setModalState(false)
+  }
+
+  useEffect(() => {
+    calculateTotalCost()
+  }, [bills, calculateTotalCost])
 
   return (
     <Container>
+      <ModalNewBill show={modalState} handleClose={hideModal} />
+      <ButtonNewBill handleClick={showModal} />
       <span className="billCards">
         {bills === undefined
           ? <h3>Cargando...</h3>
@@ -22,7 +38,7 @@ const BillPage: FC<BillState> = ({ bills }: any) => {
               cost={bill.cost}
               frecuency={bill.frecuency}
               color={bill.color}
-              payer={bill.payer}
+              payers={bill.payer}
               image={bill.image}
               paymentDivision={bill.paymentDivision}
             />
@@ -36,26 +52,11 @@ const BillPage: FC<BillState> = ({ bills }: any) => {
   )
 };
 
-const mapStateToProps = (state: { billData: BillState }) => ({
-  bills: state.billData.billsList
-})
-
-const mapDispatchToProps = dispatch => ({
-  // quitarTitular(jugador) {
-  //   dispatch({
-  //     type: 'QUITAR_TITULAR',
-  //     jugador
-  //   })
-  // }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(BillPage)
-
-
 const Container = styled.div`
+margin-top:10px;
 display:grid;
 grid-template-columns: 1fr 5% 1fr;
-grid-template-rows:1fr;
+grid-template-rows:50px 1fr;
 height:80vh;
 
 .billCards{

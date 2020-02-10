@@ -1,4 +1,4 @@
-import { TaskAddAction } from "../../redux/taskList/taskListTypes";
+import { TaskAddAction, TaskRemoveAction } from "../../redux/taskList/taskListTypes";
 import { NotifyNewAction } from "../../redux/notifys/notifysTypes";
 
 export interface Task {
@@ -9,5 +9,7 @@ export interface Task {
 export interface TodoListProps {
   tasks?: Task[],
   addNotify?: NotifyNewAction | any,
-  addTask?: TaskAddAction | any
+  addTask?: TaskAddAction | any,
+  removeTask?: TaskRemoveAction | any
+
 }

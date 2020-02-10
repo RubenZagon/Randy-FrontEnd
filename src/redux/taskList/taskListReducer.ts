@@ -1,6 +1,7 @@
 import { Reducer } from 'react'
-import { TaskActions, TaskState, GET_TASKS, ADD_TASK } from './taskListTypes'
-import { initialTasksList } from '../../services/tasks/models'
+import { TaskActions, TaskState, GET_TASKS, ADD_TASK, REMOVE_TASK } from './taskListTypes'
+import { initialTasksList, Task } from '../../services/tasks/models'
+
 
 
 const initialState: TaskState = {
@@ -18,6 +19,10 @@ const tasksReducer: Reducer<TaskState, TaskActions> = (
       return {
         tasksList: [...state.tasksList, action.payload]
       }
+    case REMOVE_TASK:
+      return {
+        tasksList: remove(state.tasksList, action.id)
+      }
     default:
       return state
   }
@@ -25,18 +30,12 @@ const tasksReducer: Reducer<TaskState, TaskActions> = (
 
 export default tasksReducer
 
-// EJEMPLO PARA BUSCAR UNA TAREA CON EL ID Y MARCARLA COMO COMPLETADA
-
-// const handleDelete = useCallback(
-//   () => (taskToUpdate: Task) => {
-
-//     const newTasks = taskList.map(task => {
-//       if (task.uuid === taskToUpdate.uuid) {
-//         console.log('Tarea completada - ', task.label);
-//         return { ...task, done: !task.done };
-//       }
-//       return task;
-//     })
-
-//     setTaskList(newTasks);
-//   }, [taskList]);
+function remove(taskList: Task[], id: string) {
+  const newTaskList = taskList.map((task) => {
+    if (task.uuid === id) {
+      return { ...task, done: !task.done };
+    }
+    return task;
+  })
+  return newTaskList.filter((task) => task.done !== true)
+}

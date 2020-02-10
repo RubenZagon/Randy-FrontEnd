@@ -1,15 +1,11 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
+import { KeepCalmAnd } from "../../components/keepCalm/keepCalm";
 
 export const Settings: FC = () => {
   return (
     <Container>
-      {/* <h1>
-        Hola, soy los ajustes{" "}
-        <span role="img" aria-label="emoji">
-          🔧
-        </span>{" "}
-      </h1> */}
+      <KeepCalmAnd />
       <Footer>
         <a href="https://github.com/RubenZagon">
           {" "}

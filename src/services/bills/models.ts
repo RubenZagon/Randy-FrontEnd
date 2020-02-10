@@ -1,4 +1,4 @@
-import { BillCardInterface } from "../../components/bills/types"
+import { BillCardInterface } from "../../components/billCard/types"
 import billsList from '../../database/billsList.json'
 import { uniqueId } from "../../utils/uniqueId";
 
@@ -7,15 +7,15 @@ export const billCardList: BillCardInterface[] = billsList.map((bill: any) => {
     id: uniqueId(),
     ...bill,
     image: selectImage(bill.title),
-    paymentDivision: toNumber((bill.cost / bill.payer.length).toFixed(2))
+    paymentDivision: toNumber((bill.cost / (bill.payer.length + 1)).toFixed(2))
   }
 })
 
-function toNumber(string: string) {
+export function toNumber(string: string) {
   return +string
 }
 
-function selectImage(title: string): string {
+export function selectImage(title: string): string {
   switch (title) {
     case "Alquiler":
       return "https://image.flaticon.com/icons/png/512/609/609803.png";
