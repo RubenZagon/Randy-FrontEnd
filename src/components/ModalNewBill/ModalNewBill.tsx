@@ -104,7 +104,9 @@ export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, add
 
             <div>
               {checkboxsColors.map((colorEL, index) => (
+
                 <input
+                  aria-label={colorEL}
                   key={index}
                   style={{ backgroundColor: colorEL }}
                   onChange={() => setPayload({ ...payload, color: colorEL })}
@@ -112,6 +114,7 @@ export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, add
                   name="color"
                   id={colorEL.toLowerCase()}
                 />
+
               ))}
             </div>
 

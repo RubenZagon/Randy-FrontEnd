@@ -11,4 +11,26 @@ export default {
 };
 
 
-export const Default = () => <Navigator />;
+export const Desktop = () => <Navigator />;
+
+Desktop.story = {
+  parameters: {
+    viewport: { defaultViewport: 'responsive' },
+  },
+};
+
+export const Phone = () => <Navigator />;
+
+Phone.story = {
+  parameters: {
+    viewport: { defaultViewport: 'iphone6' },
+  },
+};
+
+export const Tablet = () => <Navigator />;
+
+Tablet.story = {
+  parameters: {
+    viewport: { defaultViewport: 'ipad' },
+  },
+};
