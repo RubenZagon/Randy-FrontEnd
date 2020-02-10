@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from '@emotion/styled';
-import { ModalNewBillInterface } from "./types";
-import { colorCard } from "../billCard/types";
+import { ModalNewBillInterface, InputOptions } from "./types";
+import { colorCard, BillCardInterface } from "../billCard/types";
 
 
 /*  ESTRUCTURA DE INPUTS DEL FORM
@@ -12,24 +12,75 @@ import { colorCard } from "../billCard/types";
     "color": "LightGreen",
     "payer": ["ruben", "manz", "Raul"]
 
-*/
-const checkboxsColors: colorCard[] = ['lightcoral', 'LemonChiffon', 'LightGreen', 'lightcyan', 'lightgrey'];
-const payersGroup: string[] = ["Sonia", "Oscar", "Yasmina"];
 
-export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, children }) => {
+        {
+      id: "0",
+      title: "",
+      cost: 0,
+      frecuency: "Mensual",
+      color: "lightcoral",
+      payer: ['Jhon'],
+      image: "",
+      paymentDivision: 0
+    }
+*/
+
+const checkboxsColors: colorCard[] = ['lightcoral', 'LemonChiffon', 'LightGreen', 'lightcyan', 'lightgrey'];
+const payersGroup: string[] = ["Sonia", "Oscar", "Yasmina"].sort();
+
+export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, addBill }) => {
   const showHideClassName: string = show ? "display-block" : ""
+
+  const initialState: BillCardInterface = {
+    title: "",
+    cost: 0,
+    frecuency: "Mensual",
+    color: "lightcoral",
+    payers: []
+  }
+
+  const [payload, setPayload] = useState<BillCardInterface>(initialState)
+
+  function handleSumit(event, input: InputOptions) {
+    switch (input) {
+      case "title":
+        setPayload({ ...payload, title: event.target.value })
+        break;
+      case "cost":
+        setPayload({ ...payload, cost: event.target.value })
+        break;
+      default:
+        break;
+    }
+  }
 
   return (
     <Container className={showHideClassName}>
-      <form action="" method="get">
+      <form action="#"
+        onSubmit={() => {
+          addBill(payload)
+          setPayload(initialState)
+          handleClose()
+        }}>
         <Seccion>
           <ContainerInput>
             <label htmlFor="title">Título:</label>
-            <InputBill type="text" id='title' placeholder="Ejemplo: Alquiler" required autoFocus />
+            <InputBill
+              onBlur={(e) => handleSumit(e, "title")}
+              type="text"
+              id='title'
+              placeholder="Ejemplo: Alquiler"
+              required
+              autoFocus />
           </ContainerInput>
           <ContainerInput>
             <label htmlFor="cost">Coste:</label>
-            <InputBill type="number" id='cost' placeholder="Ejemplo: 700" required />
+            <InputBill
+              onBlur={(e) => handleSumit(e, "cost")}
+              type="number"
+              id='cost'
+              placeholder="Ejemplo: 700"
+              required />
           </ContainerInput>
 
 
@@ -37,11 +88,21 @@ export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, chi
             <legend> Frecuencia </legend>
             <div>
               <label htmlFor="mensual">
-                <input type="radio" name="frecuency" id="mensual" checked />
+                <input
+                  onChange={() => setPayload({ ...payload, frecuency: "Mensual" })}
+                  type="radio"
+                  name="frecuency"
+                  id="mensual"
+                />
                 Mensual
               </label>
               <label htmlFor="trimestral">
-                <input type="radio" name="frecuency" id="trimestral" />
+                <input
+                  onChange={() => setPayload({ ...payload, frecuency: "Trimestral" })}
+                  type="radio"
+                  name="frecuency"
+                  id="trimestral"
+                />
                 Trimestral
               </label>
             </div>
@@ -51,8 +112,15 @@ export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, chi
             <legend> Color </legend>
 
             <div>
-              {checkboxsColors.map((colorEL) => (
-                <input style={{ backgroundColor: colorEL }} type="radio" name="color" id={colorEL.toLowerCase()} />
+              {checkboxsColors.map((colorEL, index) => (
+                <input
+                  key={index}
+                  style={{ backgroundColor: colorEL }}
+                  onChange={() => setPayload({ ...payload, color: colorEL })}
+                  type="radio"
+                  name="color"
+                  id={colorEL.toLowerCase()}
+                />
               ))}
             </div>
 
@@ -61,23 +129,34 @@ export const ModalNewBill: FC<ModalNewBillInterface> = ({ handleClose, show, chi
           <fieldset className='payer'>
             <legend> Pagadores </legend>
 
-            <span>
-              <input type="checkbox" name="payer" id="sonia" />
-              <label htmlFor="payer">Sonia</label>
-            </span>
-            <span>
-              <input type="checkbox" name="payer" id="oscar" />
-              <label htmlFor="payer">Oscar</label>
-            </span>
-            <span>
-              <input type="checkbox" name="payer" id="yasmina" />
-              <label htmlFor="payer">Yasmina</label>
-            </span>
+            {payersGroup.map((payer, index) => (
+              <span key={index}>
+                <label htmlFor="payer">
+                  <input
+                    onChange={(event) => {
+                      if (event.target.checked && !payload.payers.includes(payer)) {
+                        setPayload({
+                          ...payload,
+                          payers: [...payload.payers, payer]
+                        })
+                      } else {
+                        setPayload({
+                          ...payload,
+                          payers: payload.payers.filter((el) => el !== payer)
+                        })
+                      }
+                    }}
+                    type="checkbox"
+                    name="payer"
+                    id={payer.toLowerCase()} />
+                  {payer}</label>
+              </span>
+            ))}
           </fieldset>
 
           <div className='footer-buttons'>
             <ButtonSubmit type='submit' value='Crear' />
-            <ButtonClose onClick={handleClose}>Cerrar</ButtonClose>
+            <ButtonClose type='reset' value='Cerrar' onClick={handleClose} />
           </div>
         </Seccion>
       </form>
@@ -99,7 +178,7 @@ const buttonsStyle = `
     opacity: 0.8;
   }
 `
-const ButtonClose = styled.button`
+const ButtonClose = styled.input`
   background: darkred;
   ${buttonsStyle}
 `

@@ -1,5 +1,7 @@
-import { ModalNewBill as ModalNewBillComponent} from "./ModalNewBill";
+import { ModalNewBill as ModalNewBillComponent } from "./ModalNewBill";
 import { connect } from "react-redux";
+import { addBill } from "../../redux/bill/billActions";
+import { BillCardInterface } from "../billCard/types";
 
 
 const mapStateToProps = (state) => {
@@ -10,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // ejemplo -> fetchUsers: () => dispatch(fetchUsers())
+    addBill: (data: BillCardInterface) => dispatch(addBill(data))
   }
 }
 

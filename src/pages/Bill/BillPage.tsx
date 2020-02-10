@@ -35,7 +35,7 @@ const BillPage: FC<BillState> = ({ bills }: any) => {
               cost={bill.cost}
               frecuency={bill.frecuency}
               color={bill.color}
-              payer={bill.payer}
+              payers={bill.payer}
               image={bill.image}
               paymentDivision={bill.paymentDivision}
             />

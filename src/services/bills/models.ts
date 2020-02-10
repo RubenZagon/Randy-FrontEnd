@@ -11,11 +11,11 @@ export const billCardList: BillCardInterface[] = billsList.map((bill: any) => {
   }
 })
 
-function toNumber(string: string) {
+export function toNumber(string: string) {
   return +string
 }
 
-function selectImage(title: string): string {
+export function selectImage(title: string): string {
   switch (title) {
     case "Alquiler":
       return "https://image.flaticon.com/icons/png/512/609/609803.png";

@@ -1,6 +1,7 @@
 import { GET_BILLS, BillActions, BillState, ADD_BILL, CALCULATE_TOTAL_COST } from './billTypes'
 import { Reducer } from 'react'
-import { billCardList } from '../../services/bills/models'
+import { billCardList, selectImage, toNumber } from '../../services/bills/models'
+import { uniqueId } from '../../utils/uniqueId'
 
 const initialState: BillState = {
   billsList: billCardList,
@@ -17,8 +18,16 @@ const billReducer: Reducer<BillState, BillActions> = (
       }
 
     case ADD_BILL:
+      const newBill = {
+        id: uniqueId(),
+        ...action.payload,
+        image: selectImage(action.payload.title),
+        paymentDivision: toNumber((action.payload.cost / action.payload.payers.length).toFixed(2))
+      }
+
       return {
-        ...state
+        ...state,
+        billsList: [...state.billsList, newBill]
       }
 
     case CALCULATE_TOTAL_COST:

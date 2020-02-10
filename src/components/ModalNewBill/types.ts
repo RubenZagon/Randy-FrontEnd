@@ -1,4 +1,7 @@
 export interface ModalNewBillInterface {
   handleClose: any,
-  show: boolean
+  show: boolean,
+  addBill: any
 }
+
+export type InputOptions = "title" | "cost"
