@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/core";
-import "./navigator.css";
 
 // Primary : #FFFFF
 // Secundary : #EAEAEA  | #7DF779
