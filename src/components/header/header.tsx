@@ -70,7 +70,7 @@ export const HeaderTop: FC<HeaderProps> = () => {
   return (
     <HeaderPage>
       <LogoApp></LogoApp>
-      {(width >= 500) && <h2>{currentLocalitation}</h2>}
+      {(width >= 700) && <h2>{currentLocalitation}</h2>}
       <HelloWithAvatar {...HelloProps}></HelloWithAvatar>
     </HeaderPage>
   );
@@ -106,7 +106,7 @@ function handleText(location: string) {
 const HeaderPage = styled.div`
 
 @media screen and (max-width: ${SMALLPHONE}) {
-  background: lightskyblue;
+
   max-height: 70px;
   padding-right: 1em;
   padding-left: 1em;

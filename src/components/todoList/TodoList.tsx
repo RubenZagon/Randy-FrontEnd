@@ -5,9 +5,14 @@ import Anime from '@mollycule/react-anime';
 import { TransitionGroup } from "react-transition-group";
 import { TodoListProps } from "./types";
 import { uniqueId } from "../../utils/uniqueId";
+import { SMALLPHONE } from "../../utils/const";
+import { useWindowSize } from "../../utils/hooks/useWindowSize";
 
 
 export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask, removeTask }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [width, height] = useWindowSize()
+
   const [inputTask, setInputTask] = useState('');
 
   /*
@@ -38,7 +43,7 @@ export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask, removeT
     <Container>
       <HeaderTasks>
         <InputTask type='text' onBlur={event => handleInput(event)} name='inputTask' placeholder="Ejemplo: Tender la ropa" />
-        <Button onClick={addNewTask}>+ Agregar</Button>
+        <Button onClick={addNewTask}>+{(width >= 500) && 'Agregar'}</Button>
       </HeaderTasks>
 
       <TransitionGroup>
@@ -77,26 +82,38 @@ export const TodoList: FC<TodoListProps> = ({ tasks, addNotify, addTask, removeT
 
 
 const Container = styled.div`
+@media screen and (max-width: ${SMALLPHONE}) {
+
+  }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 `;
 
 const HeaderTasks = styled.div`
-display:flex;
-justify-content:space-between;
-align-items:center;
+@media screen and (max-width: ${SMALLPHONE}) {
 
-width: 100%;
+}
+display:flex;
+justify-content:space-around;
+align-items:center;
+width:100%;
 margin: 20px 0px;
 `
 
 const Button = styled.button`
+
+@media screen and (max-width: ${SMALLPHONE}) {
+  border-radius:50%;
+  min-width: unset;
+  width:40px;
+  padding:unset;
+}
+
   padding: 10px 20px;
   font-size: 1em;
   height: 40px;
   min-width: 115px;
-  margin-right: 3%;
   background: #47ab43;
   color: white;
   border-radius: 10px;
@@ -109,9 +126,13 @@ const Button = styled.button`
 `;
 
 const InputTask = styled.input`
+@media screen and (max-width: ${SMALLPHONE}) {
+width:80%;
+}
+
 padding: 10px 5px 5px 0px;
-margin-right: 5%;
-width: 70%;
+margin-right: 2%;
+width: 65%;
 font-size: 1em;
 border: 0px;
 border-bottom: 3px lightgray solid;
@@ -122,6 +143,7 @@ border-bottom: 3px lightgray solid;
 `
 
 const ContainerTask = styled.div`
+
   display: flex;
   flex-direction: row;
   align-items: center;

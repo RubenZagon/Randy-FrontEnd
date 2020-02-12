@@ -1,14 +1,14 @@
 import React from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 import { BrowserRouter as Router } from "react-router-dom";
-import { HeaderTop } from '../components/header/header';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
+import { TodoList } from '../components/todoList/TodoList';
 
 export default {
-  title: 'Header',
-  components: HeaderTop,
+  title: 'To Do List',
+  components: TodoList,
   decorators: [
     withA11y,
     withKnobs,
@@ -25,15 +25,32 @@ export default {
 const store: any = {
   getState: () => {
     return {
-      notifys: { count: number("notifys", 5) },
+      tasksList: [
+        {
+          uuid: '0mnt6hrrp5hc05uk9boiph',
+          label: 'Tender la ropa',
+          done: false
+        },
+        {
+          uuid: 'plgsrgr1iji1ovlcf46o9n',
+          label: 'Comprar aguacates 🥑',
+          done: false
+        },
+        {
+          uuid: 'jhgbaig998clqq9orhhga',
+          label: 'Sacar la basura',
+          done: false
+        }
+      ]
     };
   },
   subscribe: () => 0,
   dispatch: action('dispatch'),
-}
+};
 
 
-export const Desktop = () => <HeaderTop />;
+
+export const Desktop = () => <TodoList />;
 
 Desktop.story = {
   parameters: {
@@ -41,7 +58,7 @@ Desktop.story = {
   },
 };
 
-export const Phone = () => <HeaderTop />;
+export const Phone = () => <TodoList />;
 
 Phone.story = {
   parameters: {
@@ -49,7 +66,7 @@ Phone.story = {
   },
 };
 
-export const Tablet = () => <HeaderTop />;
+export const Tablet = () => <TodoList />;
 
 Tablet.story = {
   parameters: {
