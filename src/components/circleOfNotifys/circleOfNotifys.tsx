@@ -18,8 +18,12 @@ const CircleNotifys = styled.div`
   color: white;
   border-radius: 50%;
   border: 5px solid white;
-  width: 25px;
-  height: 25px;
+  min-width: 15px;
+  min-height: 15px;
+  width: 5vw;
+  height: 5vw;
+  max-width: 25px;
+  max-height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;

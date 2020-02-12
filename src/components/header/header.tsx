@@ -1,13 +1,15 @@
 import React, { FC, useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { LogoApp } from "../logoApp/logoApp";
-import { Hello } from "../hello/hello";
+import { HelloWithAvatar } from "../hello/hello";
 import { useLocation } from "react-router-dom";
+import { SMALLPHONE } from "../../utils/const";
+import { useWindowSize } from "../../utils/hooks/useWindowSize";
+import { FakeUser, HeaderProps } from "./types";
 
 
-interface HeaderProps {
-  className?: string;
-}
+
+
 
 const navOptions = {
   link1: '/dashboard',
@@ -22,29 +24,11 @@ const HelloProps = {
   srcAvatar: "https://cbsnews1.cbsistatic.com/hub/i/2018/11/06/0c1af1b8-155a-458e-b105-78f1e7344bf4/2018-11-06t054310z-1334124005-rc1be15a8050-rtrmadp-3-people-sexiest-man.jpg"
 };
 
-interface FakeUser {
-  results: [
-    { gender: string },
-    {
-      name: {
-        title: string,
-        first: string,
-        last: string
-      }
-    },
-    {
-      picture: {
-        large: string,
-        medium: string,
-        thumbnail: string
-      }
-    }
-  ]
-}
-
-
 export const HeaderTop: FC<HeaderProps> = () => {
-  const [text, setText] = useState<string>('');
+  const [currentLocalitation, setCurrentLocalitation] = useState<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [width, height] = useWindowSize()
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState<FakeUser>(
     {
@@ -80,14 +64,14 @@ export const HeaderTop: FC<HeaderProps> = () => {
   let location = useLocation();
 
   useEffect(() => {
-    setText(handleText(location.pathname))
+    setCurrentLocalitation(handleText(location.pathname) || 'Dashboard ✨')
   }, [location])
 
   return (
     <HeaderPage>
       <LogoApp></LogoApp>
-      <h2>{text}</h2>
-      <Hello {...HelloProps}></Hello>
+      {(width >= 500) && <h2>{currentLocalitation}</h2>}
+      <HelloWithAvatar {...HelloProps}></HelloWithAvatar>
     </HeaderPage>
   );
 };
@@ -120,6 +104,14 @@ function handleText(location: string) {
 }
 
 const HeaderPage = styled.div`
+
+@media screen and (max-width: ${SMALLPHONE}) {
+  background: lightskyblue;
+  max-height: 70px;
+  padding-right: 1em;
+  padding-left: 1em;
+  }
+
   max-height: 100px;
   padding-right: 50px;
   padding-left: 50px;

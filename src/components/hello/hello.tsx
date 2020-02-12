@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
 import CircleOfNotifys from "../circleOfNotifys";
+import { SMALLPHONE } from "../../utils/const";
 
 
 export interface HelloProps {
@@ -20,14 +21,9 @@ const avatarPrint = (
   </svg>
 );
 
-export const Hello: FC<HelloProps> = ({ name, srcAvatar }) => {
+export const HelloWithAvatar: FC<HelloProps> = ({ name, srcAvatar }) => {
 
-  /*
-  const [state, dispatch] = useContext(NotifyContext);
 
-  const handleReadNotifys = () => dispatch({ type: RESET_NOTIFYS });
-
-  */
 
   return (
     <>
@@ -40,7 +36,7 @@ export const Hello: FC<HelloProps> = ({ name, srcAvatar }) => {
             </LandscapeImage>
           </div>
         )}
-        {srcAvatar === "" && <AvatarCSS>{avatarPrint}</AvatarCSS>}
+        {srcAvatar === "" && <div>{avatarPrint}</div>}
         <NotifyContainer>
           <CircleOfNotifys />
         </NotifyContainer>
@@ -57,22 +53,32 @@ const HelloContainer = styled.div`
 `;
 
 const NotifyContainer = styled.div`
+  @media screen and (max-width: ${SMALLPHONE}) {
+    transform: translate(-20px, -20px);
+  }
+
   z-index: 5;
   transform: translate(-30px, -40px);
 `;
 
 const Text = styled.h3`
+  @media screen and (max-width: ${SMALLPHONE}) {
+    font-size: 1rem;
+  }
+
   margin-right: 15px;
   font-size: 1.3rem;
 `;
-const AvatarCSS = styled.div``;
+
 
 const LandscapeImage = styled.div`
   display: inline-block;
   position: relative;
-  min-width: 25px;
-  min-height: 25px;
+  min-width: 50px;
+  min-height: 50px;
   max-width: 80px;
+  width:10vw;
+  height:10vw;
   max-height: 80px;
   overflow: hidden;
   border-radius: 50%;

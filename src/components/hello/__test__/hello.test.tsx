@@ -1,6 +1,6 @@
 import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { Hello } from "../hello";
+import { HelloWithAvatar } from "../hello";
 
 const props = {
   name: "Carlos",
@@ -10,7 +10,7 @@ const props = {
 xdescribe("Hello", () => {
   describe("Render", () => {
     test("Should render a h3 text with the name Carlos", async () => {
-      const { queryByText } = render(<Hello {...props} />);
+      const { queryByText } = render(<HelloWithAvatar {...props} />);
       const items = await queryByText(/Carlos/i);
       expect(items).toBe("Carlos");
     });
