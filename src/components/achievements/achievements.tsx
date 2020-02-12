@@ -19,6 +19,7 @@ export const Achievements: FC<AchievementsProps> = props => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height:70vh;
 `;
 const ContainerAchievements = styled.div`
   display: flex;

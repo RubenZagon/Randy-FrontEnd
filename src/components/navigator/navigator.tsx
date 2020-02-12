@@ -46,6 +46,8 @@ export default Navigator;
 
 const Container = styled.div`
 
+z-index:100;
+
 @media screen and (max-width: ${SMALLPHONE}) {
     min-width:100vw;
     max-height:4.3em;

@@ -85,6 +85,7 @@ const Container = styled.div`
 @media screen and (max-width: ${SMALLPHONE}) {
 
   }
+  min-width:270px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

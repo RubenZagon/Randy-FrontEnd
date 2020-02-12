@@ -15,9 +15,9 @@ export const SpendCalculator: FC<SpendCalculatorProps> = ({ total, calculateTota
 
   return (
     <Container>
-      <h2><span role='img' aria-label='dinero volando'>💰</span> Total de gastos <span role='img' aria-label='dinero volando'>💰</span></h2>
+      <h2><span role='img' aria-label='dinero volando'>💰</span> Total de gastos</h2>
       <h1>{total}€</h1>
-    </Container>
+    </Container >
   );
 };
 

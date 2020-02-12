@@ -18,7 +18,9 @@ export const AchievmentItem: FC<achievmentItemProps> = ({ achievement, className
 };
 
 const ImgContainer = styled.div`
-  display: flex;
-  width: 5em;
-  height: 5em;
-`;
+  min-width: 50px;
+  width: 100%;
+  height: auto;
+  max-width: 4em;
+  z-index:2;
+`
