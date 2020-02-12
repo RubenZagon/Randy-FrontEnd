@@ -12,6 +12,7 @@ import { Settings } from "./pages/Settings/Settings";
 import { useState } from "react";
 import { ButtonSummit } from "./components/buttonSumit/buttonSumit";
 import BillPage from "./pages/Bill/index";
+import { SMALLPHONE } from "./utils/const";
 
 
 
@@ -55,6 +56,17 @@ const App: React.FC = () => {
 export default App;
 
 const Container = styled.div`
+
+  @media screen and (max-width: ${SMALLPHONE}) {
+  grid-template-columns: 100%;
+  grid-template-rows:1fr 80% 50px;
+  grid-template-areas:
+  "header"
+  "content"
+  "nav";
+  }
+
+  height: 100vh;
   background: white;
   display:grid;
 
