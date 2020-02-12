@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import styled from '@emotion/styled';
 import { ModalNewBillInterface, InputOptions } from "./types";
 import { colorCard, BillCardInterface } from "../billCard/types";
+import { SMALLPHONE } from "../../utils/const";
 
 
 /*  ESTRUCTURA DE INPUTS DEL FORM
@@ -198,6 +199,21 @@ const Container = styled.div`
   }
 `
 const Seccion = styled.section`
+@media screen and (max-width: ${SMALLPHONE}) {
+  border-radius:unset;
+  padding:15px;
+  width: calc(100% - 30px);
+  height: 100%;
+
+  min-width: unset;
+  max-width: ${SMALLPHONE};
+
+  top:unset;
+  left:unset;
+  transform: unset;
+}
+
+
   border-radius:10px;
   position:fixed;
   background: white;
