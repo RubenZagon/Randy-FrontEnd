@@ -1,17 +1,21 @@
 import React from 'react';
-import { withA11y } from '@storybook/addon-a11y';
 import { BrowserRouter as Router } from "react-router-dom";
-import { withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import { Achievements } from '../components/achievements/achievements';
+import { SECCTION } from './constanst';
+import { withTests } from '@storybook/addon-jest';
+import results from './__test__/.jest-test-results.json';
+
 
 export default {
-  title: 'Achievements Collection',
+  title: SECCTION.TO_DO + 'Achievements Collection',
   components: Achievements,
   decorators: [
-    withA11y,
-    withKnobs,
+    withTests({
+      results,
+      filesExt: '((\\.specs?)|(\\.tests?)|(\\.test?))?((\\.ts)|(\\.tsx)|(\\.js)|(\\.jsx))$',
+    }),
     story => (
       <Provider store={store}>
         <Router>{story()}</Router>
@@ -55,6 +59,7 @@ export const Desktop = () => <Achievements />;
 Desktop.story = {
   parameters: {
     viewport: { defaultViewport: 'responsive' },
+    jest: ['achievements'],
   },
 };
 

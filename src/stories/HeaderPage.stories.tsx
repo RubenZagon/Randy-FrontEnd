@@ -5,9 +5,10 @@ import { HeaderTop } from '../components/header/header';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
+import { SECCTION } from './constanst';
 
 export default {
-  title: 'Header',
+  title: SECCTION.GENERAL + 'Header',
   components: HeaderTop,
   decorators: [
     withA11y,

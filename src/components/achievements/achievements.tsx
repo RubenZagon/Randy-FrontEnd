@@ -7,6 +7,7 @@ interface AchievementsProps {
   className?: string;
 }
 
+// TODO Que consuma desde redux
 export const Achievements: FC<AchievementsProps> = props => {
   return (
     <Container>

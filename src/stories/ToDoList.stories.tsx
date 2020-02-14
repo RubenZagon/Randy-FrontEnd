@@ -5,9 +5,10 @@ import { withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import { TodoList } from '../components/todoList/TodoList';
+import { SECCTION } from './constanst';
 
 export default {
-  title: 'To Do List',
+  title: SECCTION.TO_DO + 'To Do List',
   components: TodoList,
   decorators: [
     withA11y,

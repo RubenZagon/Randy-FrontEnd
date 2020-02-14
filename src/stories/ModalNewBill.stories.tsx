@@ -3,9 +3,10 @@ import { withA11y } from '@storybook/addon-a11y';
 import ModalNewBill from '../components/ModalNewBill';
 import { Provider } from 'react-redux';
 import { action } from '@storybook/addon-actions';
+import { SECCTION } from './constanst';
 
 export default {
-  title: 'Modal new bill',
+  title: SECCTION.BILLS + 'Modal new bill',
   components: ModalNewBill,
   decorators: [withA11y, story => <Provider store={store}>{story()}</Provider>],
 };

@@ -1,3 +1,5 @@
+
+//TODO Intefaces de logros a nuevo archivo Types
 export type stateLock = "unlock" | "lock"
 
 export interface AchievementInterface {
@@ -8,7 +10,16 @@ export interface AchievementInterface {
   unlock: stateLock,
 }
 
+/* TODO Lista de logros
+ * [] Pasar lista de logros a Base de datos JSON
+ * [] Pasarlo a Redux Redux
+ */
+
+
+
+
 export const achievementList: AchievementInterface[] = [
+
   {
     id: 1,
     name: "Basura",
