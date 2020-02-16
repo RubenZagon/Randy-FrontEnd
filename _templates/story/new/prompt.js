@@ -2,11 +2,11 @@
 // https://github.com/enquirer/enquirer/tree/master/examples
 //
 /*
-CONDITION
+CONDITION - usa EJS
 
-<% if(questionRouter){ -%>
+<% if(questionRouter){ %>
 
-  <% } -%>
+  <% } %>
 */
 
 const questionRouter = {
@@ -23,7 +23,7 @@ const questionRedux = {
 
 const selectViews = {
   type: 'multiselect',
-  name: 'view',
+  name: 'views',
   message: 'Pick your views to create',
   limit: 3,
   choices: [{
@@ -45,7 +45,7 @@ const selectViews = {
 module.exports = [
   questionRouter,
   questionRedux,
-  // selectViews
+  selectViews
 ]
 
 

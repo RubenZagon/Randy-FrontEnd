@@ -58,8 +58,13 @@ const store: any = {
 
 <% } %>
 
+<%
+views.forEach (view => {
+%>
 
-
+<%
+if(view === 'Desktop'){
+%>
 export const Desktop = () => <Achievements />;
 
 Desktop.story = {
@@ -68,7 +73,11 @@ Desktop.story = {
   },
 };
 
+<% } %>
 
+<%
+if(view === 'iPhone'){
+%>
 export const Phone = () => <Achievements />;
 
 Phone.story = {
@@ -77,6 +86,11 @@ Phone.story = {
   },
 };
 
+<% } %>
+
+<%
+if(view === 'iPad'){
+%>
 export const Tablet = () => <Achievements />;
 
 Tablet.story = {
@@ -84,5 +98,12 @@ Tablet.story = {
     viewport: { defaultViewport: 'ipad' },
   },
 };
+<% } %>
+
+
+<% }) %>
+
+
+
 
 `
