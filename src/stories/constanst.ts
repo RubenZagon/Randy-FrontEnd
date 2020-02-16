@@ -3,7 +3,8 @@ type SeccionOptions = {
   GENERAL: 'GENERAL|',
   BILLS: 'BILLS|',
   SETTINGS: 'SETTINGS|',
-  DASHBOARD: 'DASHBOARD|'
+  DASHBOARD: 'DASHBOARD|',
+  CALENDAR: 'CALENDAR|'
 };
 
 export const SECCTION: SeccionOptions = {
@@ -11,5 +12,6 @@ export const SECCTION: SeccionOptions = {
   GENERAL: 'GENERAL|',
   BILLS: 'BILLS|',
   SETTINGS: 'SETTINGS|',
-  DASHBOARD: 'DASHBOARD|'
+  DASHBOARD: 'DASHBOARD|',
+  CALENDAR: 'CALENDAR|'
 }

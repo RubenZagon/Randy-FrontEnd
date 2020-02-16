@@ -42,10 +42,60 @@ const selectViews = {
 }
 
 
+const selectSecction = {
+  type: 'select',
+  name: 'selectSecction',
+  message: 'Secction of the component in the storybook?',
+  choices: [{
+      name: 'TO_DO',
+      message: 'To Do List',
+
+    },
+    {
+      name: 'GENERAL',
+      message: 'General',
+
+    },
+    {
+      name: 'BILLS',
+      message: 'Bills',
+
+    },
+    {
+      name: 'SETTINGS',
+      message: 'Settings',
+
+    },
+    {
+      name: 'DASHBOARD',
+      message: 'Dashboard',
+    },
+    {
+      name: 'CALENDAR',
+      message: 'Calendar',
+    }
+  ],
+}
+
+const name = {
+  type: 'input',
+  name: 'name',
+  message: 'Name of component ?'
+}
+
+const title = {
+  type: 'input',
+  name: 'titleStory',
+  message: 'Title of story?'
+}
+
 module.exports = [
+  name,
+  title,
   questionRouter,
   questionRedux,
-  selectViews
+  selectViews,
+  selectSecction
 ]
 
 
@@ -77,50 +127,6 @@ module.exports = [{
     {
       name: 'gray',
       value: '#808080'
-    },
-    {
-      name: 'green',
-      value: '#008000'
-    },
-    {
-      name: 'lime',
-      value: '#00ff00'
-    },
-    {
-      name: 'maroon',
-      value: '#800000'
-    },
-    {
-      name: 'navy',
-      value: '#000080'
-    },
-    {
-      name: 'olive',
-      value: '#808000'
-    },
-    {
-      name: 'purple',
-      value: '#800080'
-    },
-    {
-      name: 'red',
-      value: '#ff0000'
-    },
-    {
-      name: 'silver',
-      value: '#c0c0c0'
-    },
-    {
-      name: 'teal',
-      value: '#008080'
-    },
-    {
-      name: 'white',
-      value: '#ffffff'
-    },
-    {
-      name: 'yellow',
-      value: '#ffff00'
     }
   ]
 }]
