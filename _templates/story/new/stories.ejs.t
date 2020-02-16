@@ -1,24 +1,25 @@
 ---
 to: src/stories/<%= Name %>.stories.tsx
 ---
-<% if(questionRouter){ %>import { BrowserRouter as Router } from "react-router-dom";<% } %>
-<% if(questionRedux){ %>import { Provider } from 'react-redux';<% } %>
 import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { action } from '@storybook/addon-actions';
 import { SECCTION } from './constanst';
-
+<% if(questionRouter){ %>import { BrowserRouter as Router } from "react-router-dom";<% } %>
+<% if(questionRedux){ %>import { Provider } from 'react-redux';<% } %>
 
 export default {
   title: SECCTION.<%= selectSecction %> + "<%= titleStory %>",
   components: <%= Name %>,
   decorators: [
-    story => (
+<% if( questionRedux || questionRouter ){ %> story => (
 <% if( questionRedux ){ %><Provider store={store}><% } %>
 <% if( questionRouter ){ %><Router><% } %>
         {story()}
 <% if( questionRouter ){ %></Router><% } %>
 <% if( questionRedux ){ %></Provider ><% } %>
     )
+  <% } %>
   ]
 };
 <% if(questionRedux){ %> // A super-simple mock of a redux store
